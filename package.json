@@ -46,9 +46,13 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "format": "prettier --write{*.js,src/**/*.{js,jsx}}",
-    "lint": "eslint src/ --fix" },
-    "husky": {"hooks": {"pre-commit": "npm run lint",
-              "pre-push": "npm run format" }
+    "lint": "eslint src/ --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run format"
+    }
   },
   "repository": {
     "type": "git",
