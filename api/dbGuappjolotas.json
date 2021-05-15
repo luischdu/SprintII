@@ -85,7 +85,7 @@
             "price": 14
           }
     ],
-    "drinks": [
+    "bebidas": [
         {
             "id": "dri-1",
             "imageUrl": "https://i.imgur.com/uS1nwkF.png",
@@ -119,17 +119,5 @@
             "price": 12
         }
             
-    ],
-    "flavors":{
-        "rajas":"https://i.imgur.com/XiQiTIU.png",
-        "mole":"https://i.imgur.com/Q9L1kek.png",
-        "verde":"https://i.imgur.com/vwb6NV8.png",
-        "guayaba":"https://i.imgur.com/ZfozpXu.png",
-        "piña":"https://i.imgur.com/ILG91RE.png",
-        "pasas":"https://i.imgur.com/1A5007d.png",
-        "café":"https://i.imgur.com/Y9x05Qw.png",
-        "champurrado":"https://i.imgur.com/AU5V9vM.png",
-        "chocolate":"https://i.imgur.com/HvQd4hk.png",
-        "arroz con leche": "https://i.imgur.com/gkQNStr.png"
-    }
+    ]
   }
