@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import useFetch from 'react-hook-usefetch';
 import styled from 'styled-components';
+import axios from "axios"
 
 const DivStyle = styled.div`
     display: flex;
@@ -30,28 +31,38 @@ padding: 0;
 `
 
 export const Slider = (props) => {
+    const [state, setState] = useState({})
 
-    const [datosProducto, setdatosProducto] = useState({
-        imageUrl: '',
-        imageAlt: '',
-        name: '',
-        price: ''
-    })
-    console.log(datosProducto)
+    // console.log(datosProducto)
     //const [GuappjolotasImg, setGuappjolotasImg] = useState('http://localhost:3000/guajolotas/gua-1/')
-    const {data}= useFetch(`http://localhost:3000/guajolotas/${props.producto}`)
-    const {imageUrl, name, imageAlt, price} = !!data && data
-
+    // const {data}= useFetch(`http://localhost:3000/guajolotas`)
+    // console.log(props.producto);
 
     useEffect(() => {
-        setdatosProducto(props.producto)
+        axios.get('http://localhost:3000/guajolotas')
+            .then(res => setState(res.data))
     }, [props])
 
-    return (
-        <DivStyle>
-            <Img src={imageUrl} alt={imageAlt} />
-            <Guajolota>{name}</Guajolota>
-            <Price>${price} MXN</Price> 
-        </DivStyle>
+
+
+    // if (!state.length) {
+    //     return <h1>Cargando.....</h1>
+    // } else {
+    //     let product = state.filter(el => el.id == props.producto)[0]
+    //     return <DivStyle>
+    //                 <Img src={product.imageUrl} alt={product.name} />
+    //                 <Guajolota>{product.name}</Guajolota>
+    //                 <Price>${product.price} MXN</Price>
+    //             </DivStyle>
+    // }
+    return(
+        !state.length
+    ? <h1>Cargando.....</h1>
+    : state.map(product => <DivStyle key={product.id} >
+                        <Img src={product.imageUrl} alt={product.name} />
+                     <Guajolota>{product.name}</Guajolota>
+                       <Price>${product.price} MXN</Price>
+                   </DivStyle>)
     )
+    
 }
