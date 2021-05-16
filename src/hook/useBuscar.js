@@ -20,8 +20,8 @@ export const useBuscar=(inicial)=>{
                     console.log(comida.name),
                     // comida.name.toLowerCase().includes(buscar.toLowerCase()) ||
                     // comida.type.toLowerCase().includes(buscar.toLowerCase())
-                    comida.name==buscar ||
-                    comida.type==buscar 
+                    comida.name===buscar ||
+                    comida.type===buscar 
                 );
             });
         };
@@ -32,7 +32,7 @@ export const useBuscar=(inicial)=>{
         return (
             <li>
                 <div>
-                    <img src={imageUrl} style={{ width: "100px" }} />
+                    <img src={imageUrl} alt="logo" style={{ width: "100px" }} />
                 </div>
                 <div>
                     {name} <span>{type}</span>
