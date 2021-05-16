@@ -12,27 +12,25 @@ export const useBuscar=(inicial)=>{
 
     const comidas = useMemo(() => {
         if (!buscar){ 
-            return ListaComidas;
+            return [{"name":"Escriba la comida a buscar"}];
         }else{
             return ListaComidas.filter((comida) => {
                 return (
                     console.log(buscar),
                     console.log(comida.name),
-                    // comida.name.toLowerCase().includes(buscar.toLowerCase()) ||
-                    // comida.type.toLowerCase().includes(buscar.toLowerCase())
-                    comida.name===buscar ||
-                    comida.type===buscar 
+                    comida.name.toLowerCase().includes(buscar.toLowerCase()) ||
+                    comida.type.toLowerCase().includes(buscar.toLowerCase())
                 );
             });
         };
-    }, [buscar, ListaComidas]);
+    }, [buscar]);
 
 
     const ListaComidasId = ({ name, type, imageUrl}) => {
         return (
             <li>
                 <div>
-                    <img src={imageUrl} alt="logo" style={{ width: "100px" }} />
+                    <img src={imageUrl} style={{ width: "100px" }} />
                 </div>
                 <div>
                     {name} <span>{type}</span>
