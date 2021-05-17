@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import color from "../assets/predeterminatedStyles"
-import ListMealsMainPage from './ListMealsMainPage'
+import CartPage from './CartPage'
+// import ListMealsMainPage from './ListMealsMainPage'
 
 const GlobalStyle = createGlobalStyle`
         *{
@@ -23,7 +24,8 @@ export default class App extends Component {
         return (
             <div>
                 <GlobalStyle/>
-                <ListMealsMainPage/>
+                {/* <ListMealsMainPage/> */}
+                <CartPage/>
             </div>
             
         )
