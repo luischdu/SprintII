@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import color from "../assets/predeterminatedStyles"
+import CartTotalPrice from './CartTotalPrice'
+import ModalCart from './ModalCart'
+import NoProductsCart from "./NoProductsCart.jsx"
 
 const AllProductsContainer = styled.div`
         max-width: 87%;
-        margin: auto;
+        margin: 0 auto 120px auto;
     `
 
 const EachProductContainer = styled.div`  
@@ -55,20 +58,31 @@ const EachProductPrice = styled.p`
         line-height: 17px;
     `
 
-function EachProductCart() {
+function EachProductCart(props) {
+
+    function handleClick(e) {
+        console.log(e.currentTarget.id.split("/")[1])
+    }
+
     return (
-        <AllProductsContainer>
-            <EachProductContainer>
-            <EachProductInfo>
-                <EachProductImage src="https://i.imgur.com/o1aaJ1d.png" />
-                <EachProductDescription>
-                    <EachProductName>Guajolota de tamal Verde</EachProductName>
-                    <EachProductQuantity>x1</EachProductQuantity>
-                </EachProductDescription>
-            </EachProductInfo>
-            <EachProductPrice>$50 MXN</EachProductPrice>
-        </EachProductContainer>
-        </AllProductsContainer>
+       
+            !props.products.length
+            ?<NoProductsCart/>
+            :<AllProductsContainer>
+                {props.products.map(product => <EachProductContainer id={`cart/${product.id}`} onClick={(e)=> props.setModal(product)}  key={product.id} >
+                    <EachProductInfo>
+                        <EachProductImage src={product.imageUrl} alt={product.name} />
+                        <EachProductDescription>
+                            <EachProductName>{product.name}</EachProductName>
+                            <EachProductQuantity>x{product.quantity}</EachProductQuantity>
+                        </EachProductDescription>
+                    </EachProductInfo>
+                    <EachProductPrice>${product.price * product.quantity} MXN</EachProductPrice>
+                </EachProductContainer> )}
+                <CartTotalPrice products={props.products} />
+            </AllProductsContainer>
+            
+        
     )
 }
 

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import color from "../assets/predeterminatedStyles"
@@ -23,24 +24,102 @@ const QuantityText = styled.p`
 const ChangeQuantity = styled.img`
         height: 40px;
         width: 40px;
+        cursor: pointer;
+        opacity: ${props => props.opacity || "1"};
     `
 
-function QuantityButton() {
-    const [quantity, setQuantity] = useState(1)
-    const handleMinusClick = () => {
+const ModalUpdateButton = styled.button`
+        background-color: ${color.primaryColor};
+        width: 100%;
+        color: white;
+        font-weight: 600;
+        font-size: 17px;
+        border-radius: 40px;
+        margin: 16px 0;
+        height: 45px;
+        cursor: pointer;
+        opacity: ${props => props.opacity || "1"};
+        pointer-events: ${props => props.events || "auto"};
+    `
+
+function QuantityButton({current, setUpdate, setModal}) {
+
+    const [quantity, setQuantity] = useState(current.quantity)
+    const [opacity, setOpacity] = useState(1)
+    
+    const handleMinusClick = () => {  
         quantity > 0 && setQuantity(quantity - 1)
+        if(quantity - 1 == 0){
+            setOpacity(0.5)        }
     }
     const handlePlusClick = () => {
         setQuantity(quantity + 1)
+        if(opacity == 0.5){
+            setOpacity(1)
+        }
     }
 
+    let buttonOpacity;
+    let buttonPointer;
+    if(current.quantity == quantity){
+        buttonOpacity = 0.5;
+        buttonPointer = "none";
+    }
+    // const updateCart = async () =>{
+    //     current.quantity = quantity;
+    //     let mi;
+    //     if(!quantity){
+    //         mi = await axios.delete(`http://localhost:3004/cart/${current.id}`)
+    //         log(mi)
+    //     }else{
+    //         mi = await axios.put(`http://localhost:3004/cart/${current.id}`, current)
+    //         console.log(mi);
+    //     }
+    //  return mi
+    // }
 
     return (
+        
+        <>
         <QuantityButtonContainer>
-            <ChangeQuantity onClick={handleMinusClick} src="https://i.imgur.com/PbfRgOM.png" />
+            <ChangeQuantity opacity={opacity} onClick={handleMinusClick} src="https://i.imgur.com/PbfRgOM.png" />
             <QuantityText>{quantity}</QuantityText>
             <ChangeQuantity onClick={handlePlusClick} src="https://i.imgur.com/NuEUguh.png" />
         </QuantityButtonContainer>
+        <ModalUpdateButton opacity={buttonOpacity} events={buttonPointer} onClick={ ()=>{
+            current.quantity = quantity;
+
+            
+            // async function asincronilla (){
+
+            //     if(!quantity){
+            //     axios.delete(`http://localhost:3004/cart/${current.id}`)
+            //     .then(res => console.log(res))
+            //     }else{
+            //         axios.put(`http://localhost:3004/cart/${current.id}`, current)
+            //         .then(res => console.log(res))
+            //     }
+
+
+            //     const response = await updateCart()
+            //     console.log(response);
+            //     return  response
+            // }
+            // asincronilla()
+
+            if(!quantity){
+                axios.delete(`http://localhost:3004/cart/${current.id}`)
+                .then(res => console.log(res)).catch(err => console.log(err))
+            }else{
+                axios.put(`http://localhost:3004/cart/${current.id}`, current)
+                .then(res => console.log(res)).catch(err => console.log(err))
+            }
+            setModal(false)
+            setUpdate(current)
+            
+            
+        }} >Actualizar</ModalUpdateButton>
+        </>
     )
 }
 

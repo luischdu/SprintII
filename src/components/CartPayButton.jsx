@@ -22,7 +22,9 @@ const PayButton = styled.button`
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
+        cursor: ${props => props.cursor || "pointer"};
+        opacity: ${props => props.opacity || "1"};
+        pointer-events: ${props => props.events || "auto"} ;
     `
 
 const PayButtonText = styled.p`
@@ -32,10 +34,18 @@ const PayButtonText = styled.p`
         font-weight: 600;
     `
 
-function CartPayButton() {
+function CartPayButton(props) {
+    let opacity;
+    let cursor;
+    let events;
+    if(!props.products.length){
+        opacity = "0.5"
+        cursor = "default"
+        events = "none"
+    }
     return (
         <PayButtonContainer>
-            <PayButton>
+            <PayButton onClick={()=>console.log("hola")} events={events} cursor={cursor} opacity={opacity} >
                 <PayButtonText>Pagar</PayButtonText>
             </PayButton>
         </PayButtonContainer>

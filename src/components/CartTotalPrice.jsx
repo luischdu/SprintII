@@ -2,11 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import color from "../assets/predeterminatedStyles"
 
-
-const ConstraintContainer = styled.div`
-        max-width: 87%;
-        margin: auto;
-    `
 const TotalPriceContainer = styled.div`
         background-color: white;
         border-radius: 20px;
@@ -31,15 +26,22 @@ const TotalPriceValue = styled.p`
         line-height: 21px;
 
     `
+    
 
-function CartTotalPrice() {
+function CartTotalPrice(props) {
+
+    // let total = props.products.reduce((previous) => previous.quantity*previous.price + current.quantity*current.price,0)
+    let total = 0;
+    for (const product of props.products) {
+        total += product.quantity*product.price
+    }
+
     return (
-        <ConstraintContainer>
             <TotalPriceContainer>
                 <TotalPriceTitle>Total</TotalPriceTitle>
-                <TotalPriceValue>$50 MXN</TotalPriceValue>
+                <TotalPriceValue>${total} MXN</TotalPriceValue>
             </TotalPriceContainer>
-        </ConstraintContainer>
+
     )
 }
 

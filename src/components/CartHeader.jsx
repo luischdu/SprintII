@@ -1,6 +1,7 @@
 import React from 'react'
 import color from "../assets/predeterminatedStyles"
 import styled from "styled-components"
+// import { useHistory } from 'react-router'
 
 const ConstraintContainer = styled.div`
         max-width:87%;
@@ -36,10 +37,13 @@ const HeaderTitle = styled.p`
 
 
 function CartHeader() {
+
+    // let history = useHistory();
+    
     return (
         
         <ConstraintContainer>
-            <HeaderBackArrow>
+            <HeaderBackArrow  >
         
             </HeaderBackArrow>
             <HeaderTitle>Carrito</HeaderTitle>

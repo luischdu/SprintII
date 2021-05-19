@@ -58,35 +58,31 @@ const ModalProductPrice = styled.p`
         color: ${color.primaryColor};
     `
 
-const ModalUpdateButton = styled.button`
-        background-color: ${color.primaryColor};
-        width: 100%;
-        color: white;
-        font-weight: 600;
-        font-size: 17px;
-        border-radius: 40px;
-        margin: 16px 0;
-        height: 45px;
-    `
 
 const ModalCloseText = styled.p`
         font-size: 17px;
         font-weight: 600;
         line-height: 21px;
         color: ${color.primaryColor};
+        cursor: pointer;
+    `
+const ModalNone = styled.div`
+        display: none;
     `
 
-function ModalCart() {
+function ModalCart(props) {
+    const {modal, setModal} = props;
     return (
-        <ModalContainer>
+        !modal
+        ?<ModalNone/>
+        :<ModalContainer>
             <ModalBackground></ModalBackground>
             <ModalCard>
-                <ModalCardImage src="https://i.imgur.com/o1aaJ1d.png" />
-                <ModalProductName>Guajolota de Tamal Verde</ModalProductName>
-                <ModalProductPrice>$50 MXN</ModalProductPrice>
-                <QuantityButton></QuantityButton>
-                <ModalUpdateButton>Actualizar</ModalUpdateButton>
-                <ModalCloseText>Cerrar</ModalCloseText>
+                <ModalCardImage src={modal.imageUrl} />
+                <ModalProductName>{modal.name}</ModalProductName>
+                <ModalProductPrice>${modal.price} MXN</ModalProductPrice>
+                <QuantityButton setModal={setModal} setUpdate={props.setUpdate} current={modal} ></QuantityButton>
+                <ModalCloseText onClick={()=>setModal(false)} >Cerrar</ModalCloseText>
             </ModalCard>
             
         </ModalContainer>

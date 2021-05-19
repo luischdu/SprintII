@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import color from "../assets/predeterminatedStyles"
 import CartPage from './CartPage'
-// import ListMealsMainPage from './ListMealsMainPage'
+import ListMealsMainPage from './ListMealsMainPage'
 
 const GlobalStyle = createGlobalStyle`
         *{

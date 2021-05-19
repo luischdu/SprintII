@@ -69,11 +69,11 @@ export default class ListMealsMainPage extends Component {
 
         return (
             <div>
-                <NameMealsList onClick={this.handleClickSelection} categorie={this.state.categorie} />
+                {/* <NameMealsList onClick={this.handleClickSelection} categorie={this.state.categorie} /> */}
                 {/* <CardMainPage data={this.state.data} /> */}
-                <AddedComboDescription categorie={this.state.categorie} />
-                <CardOrderSection categorie={this.state.categorie} />
-                <OrderSectionPayButton/>
+                {/* <AddedComboDescription categorie={this.state.categorie} /> */}
+                {/* <CardOrderSection categorie={this.state.categorie} /> */}
+                {/* <OrderSectionPayButton/> */}
             </div>
         )
     }
