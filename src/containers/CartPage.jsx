@@ -13,97 +13,47 @@ function CartPage() {
     const [modal, setModal] = useState(false)
     const [update, setUpdate] = useState(false)
 
-    // const prevProductsRef = useRef();
+    const mounted = useRef();
     useEffect(() => {
-
-        axios("http://localhost:3004/cart")
+        console.log(mounted);
+        if (!mounted.current) {
+            mounted.current = true;
+            console.log(mounted)
+            axios("http://localhost:3004/cart")
         .then(res => {
         
             setProducts(res.data)
             setLoading(false)
         }).catch(err => console.log(err))
-
-        
-         
-
-        //    ()=> mejodeeluseeffect() 
-        
-        // debugger
-        // prevProductsRef.current = products;
-        // console.log(prevProductsRef);
-
-
-    }, [update])
-    // async function logFetch(url) {
-        //     try {
-        //       const response = await fetch(url);
-        //       console.log(await response.text());
-        //     }
-        //     catch (err) {
-        //       console.log('fetch failed', err);
-        //     }
-        //   }
-        //   logFetch("http://localhost:3004/cart")
-
-
-        // return ()=>{
             
-        //     axios("http://localhost:3004/cart")
-        //     .then(res => {
-        //         console.log(res);
-        // })
-        //     console.log("hola-update");   
-        //     debugger 
-        // }
+          } else {
 
-    
-
-    // useEffect(() => {
-    //     effect
-    //     return () => {
-    //         cleanup
-    //     }
-    // }, [])
-
-
-
-    
-        // async function loadProducts(){
-        //     const response = await refresh()
-        //     console.log(response);
-        //     return response;
-        // }
+            if(!update[0].quantity){
+                axios.delete(`http://localhost:3004/cart/${update[0].id}`)
+                .then(res => {
+                    console.log(res);
+                    return axios(`http://localhost:3004/cart/`)
+                }).then(response => {
         
-        // setTimeout(()=> axios("http://localhost:3004/cart")
-        // .then(res => {
+                    setProducts(response.data)
+                    setLoading(false)
+                })
+            }else{
+                axios.put(`http://localhost:3004/cart/${update[0].id}`, update[0])
+                .then(res => {
+                    console.log(res);
+                    return axios(`http://localhost:3004/cart/`)
+                }).then(response => {
         
-        //     setProducts(res.data)
-        //     setLoading(false)
-        // }), 2000)
+                    setProducts(response.data)
+                    setLoading(false)
+                })
+            }
+            
+          }
+    }, [update])
 
-        
-        
-        
-
-    // const refresh = async () =>{
-    //     const data = await fetch("http://localhost:3004/cart");
-    //     const res = await data.json()
-    //     console.log(res);
-    // }
-    
-    // async function mejodeeluseeffect() {
-    //     const request = await  axios(`http://localhost:3004/cart/`, {
-    //         method:"POST",
-    //         body: JSON.stringify(update),
-    //         headers:{
-    //             "Content-type":"application/json"
-    //         }
-    //     }).then(response => console.log(response))
-          
-    //          }
-
-    // const prevProducts = prevProductsRef.current
-
+   
     return (
         !products.length && loading
         ?<h1>cargando...</h1>

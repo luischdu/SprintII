@@ -71,7 +71,7 @@ const ModalNone = styled.div`
     `
 
 function ModalCart(props) {
-    const {modal, setModal} = props;
+    const {modal, setModal, setUpdate} = props;
     return (
         !modal
         ?<ModalNone/>
@@ -81,7 +81,7 @@ function ModalCart(props) {
                 <ModalCardImage src={modal.imageUrl} />
                 <ModalProductName>{modal.name}</ModalProductName>
                 <ModalProductPrice>${modal.price} MXN</ModalProductPrice>
-                <QuantityButton setModal={setModal} setUpdate={props.setUpdate} current={modal} ></QuantityButton>
+                <QuantityButton setModal={setModal} setUpdate={setUpdate} current={modal} ></QuantityButton>
                 <ModalCloseText onClick={()=>setModal(false)} >Cerrar</ModalCloseText>
             </ModalCard>
             

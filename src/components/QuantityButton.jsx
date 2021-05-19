@@ -107,17 +107,9 @@ function QuantityButton({current, setUpdate, setModal}) {
             // }
             // asincronilla()
 
-            if(!quantity){
-                axios.delete(`http://localhost:3004/cart/${current.id}`)
-                .then(res => console.log(res)).catch(err => console.log(err))
-            }else{
-                axios.put(`http://localhost:3004/cart/${current.id}`, current)
-                .then(res => console.log(res)).catch(err => console.log(err))
-            }
+            
             setModal(false)
-            setUpdate(current)
-            
-            
+            setUpdate([current, quantity])     
         }} >Actualizar</ModalUpdateButton>
         </>
     )

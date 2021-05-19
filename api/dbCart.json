@@ -1,13 +1,3 @@
 {
-  "cart": [
-    {
-      "id": "dri-1",
-      "imageUrl": "https://i.imgur.com/uS1nwkF.png",
-      "imageAlt": "Champurrado",
-      "name": "Champurrado",
-      "flavor": "https://i.imgur.com/AU5V9vM.png",
-      "price": 12,
-      "quantity": 10
-    }
-  ]
+  "cart": []
 }
