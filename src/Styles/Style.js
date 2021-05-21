@@ -13,10 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     html{
         font-size: 62.5%;
     }
-
-    body {
-        background-color: red;
-    }
 `;
 
 export const Form = styled.div`
