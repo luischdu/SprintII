@@ -5,11 +5,7 @@ const MainStyle = styled.main`
   * {
     box-sizing: border-box;
     margin: 2px;
-    padding:0;
-  }
-
-  :root {
-    --white: white;
+    padding: 0;
   }
 `;
 

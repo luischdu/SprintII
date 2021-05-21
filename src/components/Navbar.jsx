@@ -4,7 +4,8 @@ import styled, { ThemeProvider } from 'styled-components';
 const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
+  margin: 6px;
 `;
 
 const ImgCarStyled = styled.img`
@@ -32,7 +33,24 @@ const ImgLogoStyle = styled.img`
       visibility: visible;
     }
   }
+`;
 
+const divWhiteStyle = styled.div`
+  z-index: 7;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  visibility: none;
+  animation: showBackground 3s ease;
+  @keyframes showBackground {
+    0% {
+      visibility: visible;
+    }
+
+    100% {
+      visibility: visible;
+    }
+  }
 `;
 const ImgStyle = styled.img`
   position: absolute;
@@ -43,6 +61,7 @@ const ImgStyle = styled.img`
   animation: aumentar 4s alternate;
   width: 30%;
   visibility: hidden;
+  z-index: 10;
 
   @keyframes aumentar {
     0% {
@@ -55,25 +74,25 @@ const ImgStyle = styled.img`
     }
 
     100% {
-      transform: translateZ(-30vw) translateY(-86vh) translateX(-35vw)
+      transform: translateZ(-30vw) translateY(-83vh) translateX(-33vw)
         scale(0.83);
       visibility: visible;
     }
   }
 `;
 
-
-
-const Header = () => {
+const Navbar = () => {
   return (
     <>
       <HeaderStyle>
         <ImgLogoStyle src="https://i.imgur.com/8aAwol7.png" alt="logo" />
-        <ImgStyle src="https://i.imgur.com/8aAwol7.png" alt="logo" />
+        <divWhiteStyle>
+          <ImgStyle src="https://i.imgur.com/8aAwol7.png" alt="logo" />
+        </divWhiteStyle>
         <ImgCarStyled src="https://i.imgur.com/ZsLvmzh.png" />
       </HeaderStyle>
     </>
   );
 };
 
-export default Header;
+export default Navbar;

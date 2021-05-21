@@ -1,13 +1,12 @@
 import React from 'react';
 import Main from '../components/Main';
-import Header from '../components/Header';
-import Text from '../components/Text';
+import Navbar from '../components/Navbar';
+
 
 const App = () => {
   return (
     <Main>
-      <Header />
-      <Text />
+      <Navbar/>
     </Main>
   );
 };
