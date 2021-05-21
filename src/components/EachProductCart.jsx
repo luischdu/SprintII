@@ -16,6 +16,9 @@ const EachProductContainer = styled.div`
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
+        background-color: white;
+        padding: 0 16px;
+        border-radius: 20px;
     `
 const EachProductInfo = styled.div`
     display: flex;

@@ -4,6 +4,7 @@ import CartHeader from '../components/CartHeader'
 import CartPayButton from '../components/CartPayButton'
 import EachProductCart from '../components/EachProductCart'
 import ModalCart from '../components/ModalCart'
+import StripeCart from '../components/StripeCart'
 
 
 function CartPage() {
@@ -39,7 +40,8 @@ function CartPage() {
                     setLoading(false)
                 })
             }else{
-                axios.put(`http://localhost:3004/cart/${update[0].id}`, update[0])
+                axios.put(`http://localhost:3004/cart/${update[0].id}
+                `, update[0])
                 .then(res => {
                     console.log(res);
                     return axios(`http://localhost:3004/cart/`)
@@ -48,8 +50,7 @@ function CartPage() {
                     setProducts(response.data)
                     setLoading(false)
                 })
-            }
-            
+            }         
           }
     }, [update])
 
@@ -61,6 +62,7 @@ function CartPage() {
             <CartHeader/>      
             <EachProductCart setModal={setModal} products={products} /> 
             <ModalCart setUpdate={setUpdate} setModal={setModal} modal={modal} />
+            {/* <StripeCart/> */}
             <CartPayButton products={products} />
         </div>
 

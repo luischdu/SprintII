@@ -88,25 +88,6 @@ function QuantityButton({current, setUpdate, setModal}) {
         </QuantityButtonContainer>
         <ModalUpdateButton opacity={buttonOpacity} events={buttonPointer} onClick={ ()=>{
             current.quantity = quantity;
-
-            
-            // async function asincronilla (){
-
-            //     if(!quantity){
-            //     axios.delete(`http://localhost:3004/cart/${current.id}`)
-            //     .then(res => console.log(res))
-            //     }else{
-            //         axios.put(`http://localhost:3004/cart/${current.id}`, current)
-            //         .then(res => console.log(res))
-            //     }
-
-
-            //     const response = await updateCart()
-            //     console.log(response);
-            //     return  response
-            // }
-            // asincronilla()
-
             
             setModal(false)
             setUpdate([current, quantity])     
