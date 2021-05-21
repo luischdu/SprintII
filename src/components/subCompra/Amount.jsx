@@ -25,23 +25,23 @@ const Ancle = styled.a`
 `
 
 
-export const Amount = () => {
+export const Amount = (props) => {
 
-    const [state, setstate] = useState(1)
+    //const [state, setstate] = useState(1)
     const handleClick = (e) => {
         e.preventDefault();
-        state > 1 && setstate(state - 1)
+        props.Total > 1 && (props.setTotal(props.Total - 1))
     }
     const handleClickPlus = (e) => {
         e.preventDefault();
-        setstate(state + 1)
+        props.setTotal(props.Total + 1)
     }
     return (
         <DivAmount>
             <Ancle onClick={handleClick} >
                 <FontAwesomeIcon icon={faMinus} id="minus " />
             </Ancle>
-            <h1> {state} </h1>
+            <h1> {props.Total}</h1>
             <Ancle onClick={handleClickPlus} >
                 <FontAwesomeIcon icon={faPlus} id="plus " />
             </Ancle>     

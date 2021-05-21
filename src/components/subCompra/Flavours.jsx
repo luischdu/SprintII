@@ -20,9 +20,7 @@ const DivImg = styled.div`
     cursor: pointer;
     text-align: center;
     opacity:${props => props.opacity || ".5" };
-    :hover {
-        opacity: 1;
-    }
+ 
 `
 export const Flavours = (props) => {
 
@@ -32,8 +30,18 @@ export const Flavours = (props) => {
 
     const handleClick = (e) => {
         setstate(e.target.parentElement.id)  
-
+        if(!props.boolean){
+            console.log('sabor'+ props.boolean);
+            props.setboolean(true)
+        }
+        //console.log(e.target.parentElement.id);
     }
+
+    useEffect(() => {
+        setstate(props.test)
+
+    }, [props])
+
         
     return (
         !data.length ? <h1>Cargando....</h1>:

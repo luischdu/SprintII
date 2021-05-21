@@ -1,9 +1,10 @@
-import React, { useRef ,useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import styled from 'styled-components';
 import axios from "axios"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
+//Inicio de los Estilos
 const MainStyle = styled.main`
     max-width: 800px;
     margin: 50px auto;
@@ -78,113 +79,131 @@ const ButtonS = styled.button`
  
     ${props => props.derecho ? 'right: 0px' : 'left: 0px'}
 `
+// Fin de los Estilos
 
-
-
+// Inicio del componente
 export const Slider = (props) => {
     const [state, setState] = useState({})
 
     const slideshow = useRef(null);
 
-	const next = () => {
-		// Comprobamos que el slideshow tenga elementos
-		if(slideshow.current.children.length > 0){
-            
-			console.log('Siguiente')
-			// Obtenemos el primer elemento del slideshow.
-			const primerElemento = slideshow.current.children[0];
-			// Establecemos la transicion para el slideshow.
-			slideshow.current.style.transition = `300ms ease-out all`;
-			const tamañoSlide = slideshow.current.children[0].offsetWidth;
-			// Movemos el slideshow
-			slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
-			const transicion = () => {
-				// Reiniciamos la posicion del Slideshow.
-				slideshow.current.style.transition = 'none';
-				slideshow.current.style.transform = `translateX(0)`;
-				// Tomamos el primer elemento y lo mandamos al final.
-				slideshow.current.appendChild(primerElemento);
-			}
-			// Eventlistener para cuando termina la animacion.
-			slideshow.current.addEventListener('transitionend', transicion);
+    const next = () => {
+        // Comprobamos que el slideshow tenga elementos
+        if (slideshow.current.children.length > 0) {
+            //Estado Booleano a false
+            props.boolean && props.setboolean(false);
+            console.log('Siguiente')
+            // Obtenemos el primer elemento del slideshow.
+            const primerElemento = slideshow.current.children[0];
+            // Establecemos la transicion para el slideshow.
+            slideshow.current.style.transition = `300ms ease-out all`;
+            const tamañoSlide = slideshow.current.children[0].offsetWidth;
+            // Movemos el slideshow
+            slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
+            const transicion = () => {
+                // Reiniciamos la posicion del Slideshow.
+                slideshow.current.style.transition = 'none';
+                slideshow.current.style.transform = `translateX(0)`;
+                // Tomamos el primer elemento y lo mandamos al final.
+                slideshow.current.appendChild(primerElemento);
+                slideshow.current.removeEventListener('transitionend', transicion)
 
-		}
-	}
-    
-    
-    const prev = () => {
-        console.log('Prev');
+            }
+            // Eventlistener para cuando termina la animacion.
+            slideshow.current.addEventListener('transitionend', transicion);
+            let item = slideshow.current.children[slideshow.current.children.length - 4].id;
+            props.handleProducto(item)
+        }
     }
 
-    useEffect(() => {
-        axios.get('http://localhost:3000/guajolotas')
-            .then(res => setState(res.data))
-    }, [props])
+    const prev = () => {
+        console.log('Anterior');
+        props.boolean && props.setboolean(false);
+        if (slideshow.current.children.length > 0) {
+            // Obtenemos el ultimo elemento del slideshow.
+            const index = slideshow.current.children.length - 1;
+            const ultimoElemento = slideshow.current.children[index];
+            slideshow.current.insertBefore(ultimoElemento, slideshow.current.firstChild);
 
-    // if (!state.length) {
-    //     return <h1>Cargando.....</h1>
-    // } else {
-    //     let product = state.filter(el => el.id == props.producto)[0]
-    //     return <DivStyle>
-    //                 <Img src={product.imageUrl} alt={product.name} />
-    //                 <Guajolota>{product.name}</Guajolota>
-    //                 <Price>${product.price} MXN</Price>
-    //             </DivStyle>
-    // }
-    return(
-        !state.length
-    ? <h1>Cargando.....</h1>
-    :<MainStyle><Container><Slideshow ref={slideshow}> {state.map(product => 
-                        <Slide key={product.id}>
-                            <Dimg><Img src={product.imageUrl} alt={product.name}/></Dimg>
-                            </Slide>
-                   ) }</Slideshow>
-                                   <Controls id="Controles">
-                    <ButtonS onClick={prev} >
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </ButtonS>
-                    <ButtonS derecho onClick={next}>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </ButtonS>
-                </Controls></Container>
-                   </MainStyle>
-                   
-    )
-    /*return (
-        <DivStyle key={product.id} >
+            slideshow.current.style.transition = 'none';
+            const tamañoSlide = slideshow.current.children[0].offsetWidth;
+            slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
 
-            <Container>
-                {
-                    !state.length
-                    ? <h1>Cargando.....</h1>
-                    : state.map(product => <Slideshow>
-                        <Slide>
-                            <a href="#"><Img src={product.imageUrl} alt={product.name} /></a>
-                        </Slide>
-                    </Slideshow>)
-                    
-                }
-                <Controls id="Controles">
-                    <Button>
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </Button>
-                    <Button>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </Button>
-                </Controls>
-            </Container>
-        </DivStyle>
-    )*/
+            setTimeout(() => {
+                slideshow.current.style.transition = `300ms ease-out all`;
+                slideshow.current.style.transform = `translateX(0)`;
+            }, 30);
+            let item = slideshow.current.children[0].id;
+            props.handleProducto(item);
 
-    /* return(
-         !state.length
-     ? <h1>Cargando.....</h1>
-     : state.map(product => <DivStyle key={product.id} >
-                         <Img src={product.imageUrl} alt={product.name} />
-                      <Guajolota>{product.name}</Guajolota>
-                        <Price>${product.price} MXN</Price>
-                    </DivStyle>)
-     )
-     */
+        }
+    }
+
+    const Change = () => {
+        if (slideshow.current != null) {
+            const arr = slideshow.current.children;
+            let idArr = [];
+            //console.log(arr);
+            //Obtener posicion del Producto
+            for (let index = 0; index < arr.length; index++) {
+                idArr = [...idArr, arr[index].id];
+            }
+            let posicion = idArr.indexOf(props.producto);
+            console.log(posicion);         
+            
+            // Obtenemos el primer elemento del slideshow.
+            const primerElemento = slideshow.current.children[posicion];
+            // Establecemos la transicion para el slideshow.
+            slideshow.current.style.transition = `300ms ease-out all`;
+            const tamañoSlide = slideshow.current.children[0].offsetWidth;
+            // Movemos el slideshow
+            slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
+            const transicion = () => {
+                // Reiniciamos la posicion del Slideshow.
+                slideshow.current.style.transition = 'none';
+                slideshow.current.style.transform = `translateX(0)`;
+                // Tomamos el primer elemento y lo mandamos al final.
+                slideshow.current.appendChild(primerElemento,);
+                slideshow.current.removeEventListener('transitionend', transicion)
+
+            }
+            // Eventlistener para cuando termina la animacion.
+            slideshow.current.addEventListener('transitionend', transicion);
+
+
+        }
+    }
+
+
+useEffect(() => {
+    axios.get('http://localhost:3000/guajolotas')
+        .then(res => setState(res.data))
+}, [])
+
+useEffect(() => {
+    props.boolean && document.addEventListener('DOMContentLoaded', Change());
+}, [props])
+
+
+
+return (
+    !state.length
+        ? <h1>Cargando.....</h1>
+        : <MainStyle><Container><Slideshow ref={slideshow}> {state.map(product =>
+            <Slide key={product.id} id={product.id}>
+                <Dimg><Img src={product.imageUrl} alt={product.name} id={product.id} /></Dimg>
+                <DivStyle><Guajolota>{product.name}</Guajolota>
+                    <Price>${product.price} MXN</Price></DivStyle></Slide>
+        )}</Slideshow>
+            <Controls id="Controles">
+                <ButtonS onClick={prev} >
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                </ButtonS>
+                <ButtonS derecho onClick={next}>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </ButtonS>
+            </Controls></Container>
+        </MainStyle>
+
+)
 }
-//<FontAwesomeIcon icon={faChevronLeft} />
