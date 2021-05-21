@@ -1,15 +1,18 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 //import {useBd} from './useBd';
 import ListaComidas from '../Bsdate/dbGuappjolotas.json';
+import { Mensaje, I } from '../Styles/Style';
 
-import { Mensaje, I } from '../components/Style';
 
 export const useBuscar = (inicial) => {
     // const {loading,data}=useBd("https://restcountries.eu/rest/v2/all");
-    // const {id, name, status, species, image, gender}=!!data && data
+    // const {}=!!data && data
 
 
     const [buscar, setBuscar] = useState(inicial);
+
+    const escribir = (b) => setBuscar(b.target.value);
+
 
 
     const comidas = useMemo(() => {
@@ -18,8 +21,6 @@ export const useBuscar = (inicial) => {
         } else {
             return ListaComidas.filter((comida) => {
                 return (
-                    console.log(buscar),
-                    console.log(comida.name),
                     comida.name.toLowerCase().includes(buscar.toLowerCase()) ||
                     comida.type.toLowerCase().includes(buscar.toLowerCase())
                 );
@@ -41,7 +42,7 @@ export const useBuscar = (inicial) => {
             return (
                 <li>
                     <div>
-                        <img src={imageUrl} style={{ width: "100px" }} alt="" />
+                        <img src={imageUrl} style={{ width: "10rem" }} alt="" />
                     </div>
                     <div>
                         {name} <span>{type}</span>
@@ -49,26 +50,7 @@ export const useBuscar = (inicial) => {
                 </li>
             )
         }
-
-        // return (
-        //     <li>
-        //         <div>
-        //             <img src={imageUrl} style={{ width: "100px" }} alt="" />
-        //         </div>
-        //         <div>
-        //             {name} <span>{type}</span>
-        //         </div>
-        //     </li>
-        // )
     };
-
-
-    useEffect(() => {
-        document.title = `${buscar}`;
-    });
-
-    const escribir = (b) => setBuscar(b.target.value);
-
 
     return { buscar, escribir, comidas, ListaComidasId };
 };

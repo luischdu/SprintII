@@ -1,7 +1,7 @@
-import styled, {css,createGlobalStyle} from 'styled-components'
+import styled, { css, createGlobalStyle } from 'styled-components'
 
 
-export const GlobalStyle =createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     *{
         box-sizing: border-box;
         margin: 0;
@@ -16,6 +16,7 @@ export const GlobalStyle =createGlobalStyle`
 
     body {
         background-color: red;
+    }
 `;
 
 export const Form = styled.div`
@@ -28,12 +29,32 @@ export const Form = styled.div`
     width:90%;
     margin-left:auto;
     margin-right:auto;
-    margin-top:1rem;
+    margin-top:27.5rem;
     margin-bottom:1rem;
     background: #E7E7E7;
     border-radius: 3rem;
-    ${props=>props.modal && css`
+
+
+    ${props => props.modal && css`
+        margin-top:1rem;
         width: 75%;
+
+        animation: slideup ease-in-out 1s;
+        
+        @keyframes slideup{
+            from {
+                margin-top:27.5rem;
+                width: 90%;
+                margin-left:auto;
+            }
+
+            to {
+                margin-top:1rem;
+                width: 75%;
+                margin-left:auto;
+            }
+        }
+
     `};
 `;
 
@@ -44,10 +65,10 @@ export const Button = styled.button`
     outline: none;
 `;
 
-export const I=styled.i`
+export const I = styled.i`
     color: Black;
     font-size: 2rem;
-    ${props=>props.modal && css`
+    ${props => props.modal && css`
         font-size: 15rem;
         margin-left:20%;
         margin-right:auto;
@@ -90,6 +111,23 @@ export const ContenedorModal = styled.div`
     flex-direction: column;
     margin-left:auto;
     margin-right:auto;
+
+    animation: fondo ease-in-out 1s;
+    @keyframes fondo{
+        0% {
+            background: transparent;
+
+        }
+
+        99% {
+            background: transparent(0,0,0,0.5);
+        }
+
+        100% {
+            margin-top:0;
+            background: #fff;
+        }
+    }
 `;
 
 export const CierreBotonModal = styled.button`
@@ -102,9 +140,26 @@ export const CierreBotonModal = styled.button`
     font-size: 1.7rem;
     font-family: Inter;
     line-height: 2.1rem;
+
+    animation: cierre ease-in-out 1s;
+    @keyframes cierre{
+        0% {
+            opacity:0;
+
+        }
+
+        99% {
+            opacity:0.5;
+        }
+
+        100% {
+            margin-top:0;
+            opacity:1;
+        }
+    }
 `;
 
-export const ContenedorBotones=styled.div`
+export const ContenedorBotones = styled.div`
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
@@ -113,7 +168,7 @@ export const ContenedorBotones=styled.div`
     margin-right:auto;
 `;
 
-export const Div=styled.div`
+export const Div = styled.div`
     width: auto;
     height: auto;
     justify-content: center;
@@ -122,7 +177,7 @@ export const Div=styled.div`
     margin-right:auto;
 `;
 
-export const Mensaje=styled.div`
+export const Mensaje = styled.div`
     width: 25rem;
     height: auto;
     justify-content: center;

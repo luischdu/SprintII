@@ -1,50 +1,9 @@
 import React from 'react';
-
 import { useBuscar } from '../hook/useBuscar';
-import { Input, Form, Button, GlobalStyle, I, ContenedorModal, CierreBotonModal, ContenedorBotones, Div } from './Style';
-
-
-
-
-
+import { Input, Form, Button, GlobalStyle, I, ContenedorModal, CierreBotonModal, ContenedorBotones, Div } from '../Styles/Style';
 
 
 export const Modal = ({ verModal, setVerModal }) => {
-    // const modalRef = useRef();
-
-    //   const animation = useSpring({
-    //     config: {
-    //       duration: 250
-    //     },
-    //     opacity: showModal ? 1 : 0,
-    //     transform: showModal ? `translateY(0%)` : `translateY(-100%)`
-    //   });
-
-    // const closeModal = e => {
-    //     if (modalRef.current === e.target) {
-    //         setShowModal(false);
-    //     }
-    // };
-
-    // const keyPress = useCallback(
-    //     e => {
-    //         if (e.key === 'Escape' && showModal) {
-    //             setShowModal(false);
-    //             console.log('I pressed');
-    //         }
-    //     },
-    //     [setShowModal, showModal]
-    // );
-
-    // useEffect(
-    //     () => {
-    //         document.addEventListener('keydown', keyPress);
-    //         return () => document.removeEventListener('keydown', keyPress);
-    //     },
-    //     [keyPress]
-    // );
-
-
 
     const { buscar, escribir, comidas, ListaComidasId } = useBuscar("");
 
@@ -63,11 +22,9 @@ export const Modal = ({ verModal, setVerModal }) => {
                         </Div>
                     </ContenedorBotones>
                     <section>
-                        {/* <ul> */}
-                            {comidas.map((comida, index) => (
-                                <ListaComidasId {...comida} key={index} />
-                            ))}
-                        {/* </ul> */}
+                        {comidas.map((comida, index) => (
+                            <ListaComidasId {...comida} key={index} />
+                        ))}
                     </section>
                 </ContenedorModal>
             ) : null}
