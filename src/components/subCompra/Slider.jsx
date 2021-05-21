@@ -150,26 +150,28 @@ export const Slider = (props) => {
             }
             let posicion = idArr.indexOf(props.producto);
             console.log(posicion);         
-            
-            // Obtenemos el primer elemento del slideshow.
-            const primerElemento = slideshow.current.children[posicion];
-            // Establecemos la transicion para el slideshow.
-            slideshow.current.style.transition = `300ms ease-out all`;
-            const tamañoSlide = slideshow.current.children[0].offsetWidth;
-            // Movemos el slideshow
-            slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
-            const transicion = () => {
-                // Reiniciamos la posicion del Slideshow.
-                slideshow.current.style.transition = 'none';
-                slideshow.current.style.transform = `translateX(0)`;
-                // Tomamos el primer elemento y lo mandamos al final.
-                slideshow.current.appendChild(primerElemento,);
-                slideshow.current.removeEventListener('transitionend', transicion)
-
+            for (let index = 0; index < idArr.length; index++) {
+                const primerElemento = slideshow.current.children[0];
+                // Establecemos la transicion para el slideshow.
+                slideshow.current.style.transition = `300ms ease-out all`;
+                const tamañoSlide = slideshow.current.children[0].offsetWidth;
+                // Movemos el slideshow
+                slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
+                const transicion = () => {
+                    // Reiniciamos la posicion del Slideshow.
+                    slideshow.current.style.transition = 'none';
+                    slideshow.current.style.transform = `translateX(0)`;
+                    // Tomamos el primer elemento y lo mandamos al final.
+                    slideshow.current.appendChild(primerElemento);
+                    slideshow.current.removeEventListener('transitionend', transicion)
+    
+                }
+                // Eventlistener para cuando termina la animacion.
+                slideshow.current.addEventListener('transitionend', transicion);
+    
             }
-            // Eventlistener para cuando termina la animacion.
-            slideshow.current.addEventListener('transitionend', transicion);
-
+            // Obtenemos el primer elemento del slideshow.
+        
 
         }
     }
