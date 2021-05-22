@@ -14,11 +14,7 @@ const SigUp = () => {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const validar = (event) => {
-    event.preventDefault();
-    console.log('enviado');
-  };
+const [listaUsers, setListaUsers] = useState([])
 
   let user = {
       userName: name,
@@ -27,7 +23,12 @@ const SigUp = () => {
       pass: password
   }
 
-  localStorage.setItem('user', JSON.stringify(user))
+  const validar = (event) => {
+    event.preventDefault();
+    console.log('enviado');
+    localStorage.setItem('user', JSON.stringify(user))
+  };
+  
   
 
   return (

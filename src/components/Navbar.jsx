@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-
+import { Link } from 'react-router-dom';
 const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;
@@ -35,12 +35,16 @@ const ImgLogoStyle = styled.img`
   }
 `;
 
-const divWhiteStyle = styled.div`
+const DivWhiteStyle = styled.div`
   z-index: 7;
   background-color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
   height: 100vh;
-  visibility: none;
+  display: none;
   animation: showBackground 3s ease;
   @keyframes showBackground {
     0% {
@@ -85,10 +89,10 @@ const Navbar = () => {
   return (
     <>
       <HeaderStyle>
-        <ImgLogoStyle src="https://i.imgur.com/8aAwol7.png" alt="logo" />
-        <divWhiteStyle>
-          <ImgStyle src="https://i.imgur.com/8aAwol7.png" alt="logo" />
-        </divWhiteStyle>
+        <ImgLogoStyle src="https://i.imgur.com/8aAwol7.png" alt="logo" />{' '}
+        {/*   <DivWhiteStyle> */}
+        <ImgStyle src="https://i.imgur.com/8aAwol7.png" alt="logo" />
+        {/*      </DivWhiteStyle> */}
         <ImgCarStyled src="https://i.imgur.com/ZsLvmzh.png" />
       </HeaderStyle>
     </>

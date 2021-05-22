@@ -15,11 +15,14 @@ const Login = () => {
 
   const validar = (event) => {
     event.preventDefault();
-    console.log('enviado');
-    console.log(localStorage.getItem(user));
-  };
 
-  
+    const usuario = JSON.parse(localStorage.getItem('user'));
+    if (usuario.userMail === email && usuario.pass === password) {
+      console.log('logeado');
+    } else {
+      console.log('no registrador');
+    }
+  };
 
   return (
     <DivContainer>
@@ -50,7 +53,8 @@ const Login = () => {
         />
         <ButtonStyle type="submit">Ingresar</ButtonStyle>
         <PFormStyle>
-          Si aun no estas registrado<SpanFormStyle> Registrate Aquí</SpanFormStyle>
+          Si aun no estas registrado
+          <SpanFormStyle> Registrate Aquí</SpanFormStyle>
         </PFormStyle>
       </form>
     </DivContainer>
