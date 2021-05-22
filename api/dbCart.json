@@ -1,0 +1,13 @@
+{
+  "cart": [
+    {
+      "id": "tam-4",
+      "imageUrl": "https://i.imgur.com/Pi4cZRL.png",
+      "imageAlt": "Tamal de Piña",
+      "name": "Tamal de Piña",
+      "flavor": "https://i.imgur.com/ILG91RE.png",
+      "price": 14,
+      "quantity": 9
+    }
+  ]
+}
