@@ -1,19 +1,15 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 //import {useBd} from './useBd';
 import ListaComidas from '../Bsdate/dbGuappjolotas.json';
 import { Mensaje, I } from '../Styles/Style';
-
-
+// Arreglar Estilos
+//
 export const useBuscar = (inicial) => {
     // const {loading,data}=useBd("https://restcountries.eu/rest/v2/all");
     // const {}=!!data && data
-
-
     const [buscar, setBuscar] = useState(inicial);
 
     const escribir = (b) => setBuscar(b.target.value);
-
-
 
     const comidas = useMemo(() => {
         if (!buscar) {

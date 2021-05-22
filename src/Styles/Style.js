@@ -1,5 +1,5 @@
 import styled, { css, createGlobalStyle } from 'styled-components'
-
+import color from '../assets/predeterminatedStyles'
 
 export const GlobalStyle = createGlobalStyle`
     *{
@@ -9,7 +9,10 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
         vertical-align: baseline;
     }
-    
+    body{
+        
+        background: ${color.greyColor};
+    }
     html{
         font-size: 62.5%;
     }

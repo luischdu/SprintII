@@ -49,7 +49,6 @@ function CardMainPage(props) {
                 {props.data.map(eachMeal =>{
                     return(
                         <EachMealCard key={eachMeal.id} >
-
                             <EachMealImage src={eachMeal.imageUrl} />
                             <EachMealDescriptionContainer>
                                 <EachMealFlavor>{eachMeal.name}</EachMealFlavor>
