@@ -6,8 +6,9 @@ import QuantityButton from './QuantityButton'
 
 const ModalContainer = styled.div`
         position: absolute;
-        top: 0;
-        height: 100vh;
+        top: -2px;
+        left: -2px;
+        height: calc(100vh - 1px);
         width: 100vw;
         z-index: 10;
         display: flex;
@@ -22,8 +23,6 @@ const ModalBackground = styled.div`
         background-color: ${color.blackColor};
         opacity: 0.5;
         z-index: 20;
-        
-        
     `
 
 const ModalCard = styled.div`
@@ -57,7 +56,6 @@ const ModalProductPrice = styled.p`
         line-height: 24px;
         color: ${color.primaryColor};
     `
-
 
 const ModalCloseText = styled.p`
         font-size: 17px;

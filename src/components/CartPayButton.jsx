@@ -45,7 +45,7 @@ function CartPayButton(props) {
     }
     return (
         <PayButtonContainer>
-            <PayButton onClick={()=>console.log("hola")} events={events} cursor={cursor} opacity={opacity} >
+            <PayButton onClick={()=>console.log(props.total)} events={events} cursor={cursor} opacity={opacity} >
                 <PayButtonText>Pagar</PayButtonText>
             </PayButton>
         </PayButtonContainer>

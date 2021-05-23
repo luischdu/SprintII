@@ -39,8 +39,9 @@ function CartHeader() {
   return (
     <ConstraintContainer>
       <Link to="/">
-        <HeaderBackArrow></HeaderBackArrow>
+      <HeaderBackArrow></HeaderBackArrow>
       </Link>
+        
       <HeaderTitle>Carrito</HeaderTitle>
     </ConstraintContainer>
   );
