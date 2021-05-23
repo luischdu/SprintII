@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export const Form = styled.div`
+export const FormBuscador = styled.div`
     display: flex;
     flex-wrap:flex;
     align-items: center;
@@ -58,14 +58,14 @@ export const Form = styled.div`
     `};
 `;
 
-export const Button = styled.button`
+export const ButtonBuscador = styled.button`
     line-height: 1;
     background-color: transparent;
     border: none;
     outline: none;
 `;
 
-export const I = styled.i`
+export const IBuscador = styled.i`
     color: Black;
     font-size: 2rem;
     ${props => props.modal && css`
@@ -78,7 +78,7 @@ export const I = styled.i`
     `};
 `;
 
-export const Input = styled.input`
+export const InputBuscador = styled.input`
     font-size: 1.7rem;
     font-family: Inter;
     line-height: 2.1rem;
@@ -96,16 +96,16 @@ export const Input = styled.input`
     }
 `;
 
-export const ContenedorModal = styled.div`
+export const ContenedorModalBuscador = styled.div`
     min-width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     width: auto;
     height: auto;
     background: #fff;
     position: absolute;
     top:0rem;
     left:0rem;
-    z-index: 10;
+    z-index: 100;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -130,7 +130,7 @@ export const ContenedorModal = styled.div`
     }
 `;
 
-export const CierreBotonModal = styled.button`
+export const CierreBotonModalBuscador = styled.button`
     cursor: pointer;
     padding: 0;
     line-height: 1;
@@ -159,7 +159,7 @@ export const CierreBotonModal = styled.button`
     }
 `;
 
-export const ContenedorBotones = styled.div`
+export const ContenedorBotonesBuscador = styled.div`
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
@@ -168,16 +168,20 @@ export const ContenedorBotones = styled.div`
     margin-right:auto;
 `;
 
-export const Div = styled.div`
-    width: auto;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    margin-left:auto;
-    margin-right:auto;
+export const DivBuscador = styled.div`
+    
+
+    ${props => props.modal && css`
+        width: auto;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        margin-left:auto;
+        margin-right:auto;
+    `};
 `;
 
-export const Mensaje = styled.div`
+export const MensajeBuscador = styled.div`
     width: 25rem;
     height: auto;
     justify-content: center;
@@ -189,3 +193,15 @@ export const Mensaje = styled.div`
     font-family: Inter;
     line-height: 2.1rem;
 `;
+
+export const SectionBuscador = styled.section`
+
+`
+
+export const SpanBuscador = styled.span`
+
+`
+
+export const H1Buscador = styled.h1`
+
+`

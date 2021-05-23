@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 //import {useBd} from './useBd';
 import ListaComidas from '../Bsdate/dbGuappjolotas.json';
-import { Mensaje, I } from '../Styles/Style';
+import { MensajeBuscador, IBuscador, H1Buscador } from '../Styles/Style';
 // Arreglar Estilos
 //
 export const useBuscar = (inicial) => {
@@ -29,10 +29,10 @@ export const useBuscar = (inicial) => {
 
         if (name === "Escriba la comida a buscar") {
             return (
-                <Mensaje>
-                    <I modal className="fas fa-search"></I>
-                    <h1>Realiza una Busqueda</h1>
-                </Mensaje>
+                <MensajeBuscador>
+                    <IBuscador modal className="fas fa-search"></IBuscador>
+                    <H1Buscador>Realiza una Busqueda</H1Buscador>
+                </MensajeBuscador>
             )
         } else {
             return (

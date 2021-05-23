@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input,Form,Button,GlobalStyle,I} from '../Styles/Style';
+import {InputBuscador,FormBuscador,ButtonBuscador,GlobalStyle,IBuscador,DivBuscador} from '../Styles/Style';
 import {useBuscar} from '../hook/useBuscar';
 import {useModal} from '../hook/useModal';
 import { Modal } from './Modal';
@@ -11,14 +11,14 @@ function Buscador() {
     const {verModal,setVerModal,openModal}=useModal(false);
 
     return (
-        <div>
+        <DivBuscador>
             <GlobalStyle/>
-            <Form>
-                <Button><I className="fas fa-search" onClick={openModal}></I></Button>  
-                <Input value={buscar} onClick={openModal} placeholder="Sabor de guajolota, bebida..." type="text" readOnly/>
+            <FormBuscador>
+                <ButtonBuscador><IBuscador className="fas fa-search" onClick={openModal}></IBuscador></ButtonBuscador>  
+                <InputBuscador value={buscar} onClick={openModal} placeholder="Sabor de guajolota, bebida..." type="text" readOnly/>
                 <Modal verModal={verModal} setVerModal={setVerModal} />
-            </Form>
-        </div>
+            </FormBuscador>
+        </DivBuscador>
     )
 }
 

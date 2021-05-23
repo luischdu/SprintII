@@ -1,6 +1,6 @@
 import React from 'react';
 import { useBuscar } from '../hook/useBuscar';
-import { Input, Form, Button, GlobalStyle, I, ContenedorModal, CierreBotonModal, ContenedorBotones, Div } from '../Styles/Style';
+import { SpanBuscador, SectionBuscador, InputBuscador, FormBuscador, ButtonBuscador, GlobalStyle, IBuscador, ContenedorModalBuscador, CierreBotonModalBuscador, ContenedorBotonesBuscador, DivBuscador } from '../Styles/Style';
 
 
 export const Modal = ({ verModal, setVerModal }) => {
@@ -10,23 +10,23 @@ export const Modal = ({ verModal, setVerModal }) => {
     return (
         <>
             {verModal ? (
-                <ContenedorModal verModal={verModal}>
+                <ContenedorModalBuscador verModal={verModal}>
                     <GlobalStyle />
-                    <ContenedorBotones>
-                        <Form modal>
-                            <Button><I className="fas fa-search"></I></Button>
-                            <Input value={buscar} placeholder="Sabor de guajolota, bebida..." onChange={escribir} type="text" inputColor="rebeccapurple" />
-                        </Form>
-                        <Div>
-                            <CierreBotonModal onClick={() => setVerModal(prev => !prev)} value="cancelar"><span>Cancelar</span></CierreBotonModal>
-                        </Div>
-                    </ContenedorBotones>
-                    <section>
+                    <ContenedorBotonesBuscador>
+                        <FormBuscador modal>
+                            <ButtonBuscador><IBuscador className="fas fa-search"></IBuscador></ButtonBuscador>
+                            <InputBuscador value={buscar} placeholder="Sabor de guajolota, bebida..." onChange={escribir} type="text" inputColor="rebeccapurple" />
+                        </FormBuscador>
+                        <DivBuscador modal>
+                            <CierreBotonModalBuscador onClick={() => setVerModal(prev => !prev)} value="cancelar"><SpanBuscador>Cancelar</SpanBuscador></CierreBotonModalBuscador>
+                        </DivBuscador>
+                    </ContenedorBotonesBuscador>
+                    <SectionBuscador>
                         {comidas.map((comida, index) => (
                             <ListaComidasId {...comida} key={index} />
                         ))}
-                    </section>
-                </ContenedorModal>
+                    </SectionBuscador>
+                </ContenedorModalBuscador>
             ) : null}
         </>
     );
