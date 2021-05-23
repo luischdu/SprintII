@@ -36,7 +36,7 @@ const Addcart = (props) => {
             "imageUrl": Dato.imageUrl,
             "imageAlt": Dato.imageAlt,
             "name": Dato.name,
-            "price": newPrice,
+            "price": Dato.price,
             "quantity": props.Total
         });
         setcompraCombo(props.Combo)
@@ -44,26 +44,25 @@ const Addcart = (props) => {
     }
 
     useEffect(() => {
-        if(state) {
-            axios.all([
-                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, JSON.stringify(compraCombo)),
-                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, JSON.stringify(compra))
-              ]).then(axios.spread((response1, response2) => {
-                console.log(response1.data.url);
-                console.log(response2.data.url);
-              })).catch(error => {
-                console.log(error);
-              });
-            // axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, compraCombo)
-            // axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, compra)
-            //     .then(res => {
-            //         console.log(res.data);
-            //     })
+        if(state && compra) {
+            if(compraCombo){
+                delete compra.id;
+                delete compraCombo.id;
+                axios.post(`https://api-guappjalotas.herokuapp.com/cart`, compra)
+                .then(res => {
+                    console.log(res)
+                    return axios.post(`https://api-guappjalotas.herokuapp.com/cart`, compraCombo)
+                }).then(res => 
+                    console.log(res))
+                setstate(false)
+                }else{
+                    delete compra.id;
+                axios.post(`https://api-guappjalotas.herokuapp.com/cart`, compra)
+                .then(res => {
+                    console.log(res)
+                })
+            }
             
-            //     .then(res => {
-            //         console.log(res.data);
-            //     })
-            setstate(false)
         }
         
     }, [shop])

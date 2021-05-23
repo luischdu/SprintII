@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const DivContainer = styled.div`
   box-sizing: border-box;
+  display: inline-block;
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
@@ -48,4 +49,8 @@ export const PFormStyle = styled.p`
 `;
 export const SpanFormStyle = styled.span`
   color: blue;
+`;
+
+export const DivIconBack = styled.div`
+  margin: 10px;
 `;
