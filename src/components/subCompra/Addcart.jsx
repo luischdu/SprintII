@@ -46,8 +46,8 @@ const Addcart = (props) => {
     useEffect(() => {
         if(state) {
             axios.all([
-                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, compraCombo),
-                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, compra)
+                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, JSON.stringify(compraCombo)),
+                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, JSON.stringify(compra))
               ]).then(axios.spread((response1, response2) => {
                 console.log(response1.data.url);
                 console.log(response2.data.url);
