@@ -82,7 +82,7 @@ function EachProductCart(props) {
                     </EachProductInfo>
                     <EachProductPrice>${product.price * product.quantity} MXN</EachProductPrice>
                 </EachProductContainer> )}
-                <CartTotalPrice products={props.products} />
+                <CartTotalPrice setTotal={props.setTotal} products={props.products} />
             </AllProductsContainer>
             
         

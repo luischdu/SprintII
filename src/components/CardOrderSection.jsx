@@ -6,7 +6,7 @@ import axios from "axios"
 
 const ConstraintContainer = styled.div`
         max-width: 87%;
-        margin: auto;
+        margin: 0 auto 70px auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -63,7 +63,7 @@ function CardOrderSection(props) {
 
     const [dataCategorie, setDataCategorie] = useState([])
 
-    function handleCheck(e) {
+    function handleCheck(e, eachMealInfo) {
         
         let radioButtons = document.getElementsByName("radio");
         for (const radio of radioButtons) {
@@ -75,12 +75,12 @@ function CardOrderSection(props) {
                 radio.previousElementSibling.alt = "unchecked";
                 radio.previousElementSibling.src = "https://i.imgur.com/9aDeHNA.png";
                 radio.checked = false;
-
             }
         }
-        let lol = document.querySelector("input[type='checkbox']:checked")
-        
-        
+        let extraMealExists = document.querySelector("input[type='checkbox']:checked")
+        console.log(extraMealExists,eachMealInfo)
+        eachMealInfo.quantity = 1
+        extraMealExists ? props.setCombo(eachMealInfo) :  props.setCombo(null);
     }
     let mealCategorie;
 
@@ -93,7 +93,7 @@ function CardOrderSection(props) {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:3004/${mealCategorie}`)
+        axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${mealCategorie}`)
         .then(res =>{
             setDataCategorie(res.data)
         })
@@ -113,7 +113,7 @@ function CardOrderSection(props) {
                     <CardAddedCombo  key={props.categorie + "/" + eachMealInfo.id} >
                         
                         <AddedComboCardCheck  src="https://i.imgur.com/9aDeHNA.png" alt="unchecked" ></AddedComboCardCheck>
-                        <AddedComboCardRadioInput onClick={(e)=> handleCheck(e)} id={eachMealInfo.id} type="checkbox" name="radio" />
+                        <AddedComboCardRadioInput onClick={(e)=> handleCheck(e,eachMealInfo)} id={eachMealInfo.id} type="checkbox" name="radio" />
                         <CardAddedComboImage src={eachMealInfo.imageUrl} />
                         <AddedComboCardName>{eachMealInfo.name}</AddedComboCardName>
                         <AddedComboCardPrice>+ ${eachMealInfo.price} MXN</AddedComboCardPrice>

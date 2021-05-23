@@ -5,7 +5,7 @@ import {Elements, CardElement, useStripe, useElements} from "@stripe/react-strip
 
 
 
-//Conexión a Stripe mediante una llave pública, ya que es una herramienta de desarrollo
+//Conexión a Stripe mediante una llave pública
 const stripePromise  =  loadStripe("pk_test_51IrmYdJOjWdrxc7GQJcOuKj3jVOzGk24CYDFnxfxlTJ8ZwVM03qGtAVxMAbqF5fzYYD9ZleBwSNTtDaCm4aQsroh00KjtVJ9uj")
 
 
@@ -33,7 +33,7 @@ const CheckoutForm = () =>{
         
         //billing_details : billingDetails
 
-        // let putamierda = paymentMethodReq.then(e => e)
+        // let pu = paymentMethodReq.then(e => e)
     }
 
     return <form onSubmit={handleSubmit} >

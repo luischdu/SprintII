@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import axios from "axios"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import useFetch from 'react-hook-usefetch';
 
 //Inicio de los Estilos
 const MainStyle = styled.main`
     max-width: 800px;
-    margin: 50px auto;
+    margin: 0px auto;
     overflow: hidden;
 `
 
@@ -83,9 +84,39 @@ const ButtonS = styled.button`
 
 // Inicio del componente
 export const Slider = (props) => {
-    const [state, setState] = useState({})
+    const [state, setstate] = useState({})
+    const [control, setcontrol] = useState(true)
+    const [moveState, setmoveState] = useState({})
+    const [arrTwo, serarrTwo] = useState({})
 
+    //const [controlTwo, setcontrolTwo] = useState(false)
+
+    //const [pastelear, setpastelear] = useState({})
     const slideshow = useRef(null);
+
+    const remake = (res) => {
+        let idArr = [];
+        for (let index = 0; index < res.length; index++) {
+            idArr = [...idArr, res[index].id];
+        }
+        let i = idArr.indexOf(props.producto)
+        //console.log(props.producto.replace(/[a-z\-]/g,''));
+        let arrOne = res.slice(i,);
+        let arrTwo = res.slice(0,i);
+        let arrTotal = [...arrOne, ...arrTwo];
+        setstate(arrTotal)
+        let moveRight = arrOne.map(el => el.id.replace(/[a-z\-]/g,''))
+        let moveLeft = arrTwo.map(el => el.id.replace(/[a-z\-]/g,'') * -1)
+        setmoveState([...moveRight, ...moveLeft])
+    }
+
+    if (control) {
+        if (props.categoria){
+            axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${props.categoria}`)
+                .then(res =>  remake(res.data))
+            setcontrol(false) 
+        }
+    }
 
     const next = () => {
         // Comprobamos que el slideshow tenga elementos
@@ -142,45 +173,33 @@ export const Slider = (props) => {
     const Change = () => {
         if (slideshow.current != null) {
             const arr = slideshow.current.children;
+            console.log(moveState);
+            const zeroState = slideshow.current.children[0].id
+            console.log(zeroState);
             let idArr = [];
-            //console.log(arr);
             //Obtener posicion del Producto
-            for (let index = 0; index < arr.length; index++) {
-                idArr = [...idArr, arr[index].id];
+            for (let index = 0; index < state.length; index++) {
+                idArr = [...idArr, state[index].id.replace(/[a-z\-]/g,'')];
             }
-            let posicion = idArr.indexOf(props.producto);
-            console.log(posicion);         
-            for (let index = 0; index < idArr.length; index++) {
-                const primerElemento = slideshow.current.children[0];
-                // Establecemos la transicion para el slideshow.
-                slideshow.current.style.transition = `300ms ease-out all`;
-                const tamañoSlide = slideshow.current.children[0].offsetWidth;
-                // Movemos el slideshow
-                slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
-                const transicion = () => {
-                    // Reiniciamos la posicion del Slideshow.
-                    slideshow.current.style.transition = 'none';
-                    slideshow.current.style.transform = `translateX(0)`;
-                    // Tomamos el primer elemento y lo mandamos al final.
-                    slideshow.current.appendChild(primerElemento);
-                    slideshow.current.removeEventListener('transitionend', transicion)
-    
-                }
-                // Eventlistener para cuando termina la animacion.
-                slideshow.current.addEventListener('transitionend', transicion);
-    
-            }
-            // Obtenemos el primer elemento del slideshow.
-        
+            let posicion = idArr.indexOf(props.producto.id.replace(/[a-z\-]/g,''));
+            console.log(posicion);
+            console.log(idArr);
+            // let arrOne = idArr.slice(posicion,);
+            // console.log(arrOne);
+            // let arrTwo = idArr.slice(0,posicion);
+            // console.log(arrTwo);
+
+            // arrTwo = arrTwo.map(el => {el * -1})
+            // console.log(arrTwo.find(el => el === 5));
+
 
         }
     }
 
-
-useEffect(() => {
-    axios.get('http://localhost:3000/guajolotas')
-        .then(res => setState(res.data))
-}, [])
+/* useEffect( () => {
+    axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${props.categoria}`)
+        .then(res =>  setstate(res.data))             
+}, []) */
 
 useEffect(() => {
     props.boolean && document.addEventListener('DOMContentLoaded', Change());

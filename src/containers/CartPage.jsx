@@ -5,6 +5,13 @@ import CartPayButton from '../components/CartPayButton'
 import EachProductCart from '../components/EachProductCart'
 import ModalCart from '../components/ModalCart'
 import StripeCart from '../components/StripeCart'
+import {createGlobalStyle} from "styled-components"
+
+const GlobalStyle = createGlobalStyle`
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    `
 
 
 function CartPage() {
@@ -13,6 +20,7 @@ function CartPage() {
     const [loading, setLoading] = useState(true)
     const [modal, setModal] = useState(false)
     const [update, setUpdate] = useState(false)
+    const [total, setTotal] = useState(0)
 
     const mounted = useRef();
     useEffect(() => {
@@ -20,7 +28,7 @@ function CartPage() {
         if (!mounted.current) {
             mounted.current = true;
             console.log(mounted)
-            axios("http://localhost:3004/cart")
+            axios("https://api-fake-sprint-guappjalotas.herokuapp.com/cart")
         .then(res => {
         
             setProducts(res.data)
@@ -30,21 +38,21 @@ function CartPage() {
           } else {
 
             if(!update[0].quantity){
-                axios.delete(`http://localhost:3004/cart/${update[0].id}`)
+                axios.delete(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart/${update[0].id}`)
                 .then(res => {
                     console.log(res);
-                    return axios(`http://localhost:3004/cart/`)
+                    return axios(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart/`)
                 }).then(response => {
         
                     setProducts(response.data)
                     setLoading(false)
                 })
             }else{
-                axios.put(`http://localhost:3004/cart/${update[0].id}
+                axios.put(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart/${update[0].id}
                 `, update[0])
                 .then(res => {
                     console.log(res);
-                    return axios(`http://localhost:3004/cart/`)
+                    return axios(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart/`)
                 }).then(response => {
         
                     setProducts(response.data)
@@ -59,11 +67,12 @@ function CartPage() {
         !products.length && loading
         ?<h1>cargando...</h1>
         :<div>
+            <GlobalStyle></GlobalStyle>
             <CartHeader/>      
-            <EachProductCart setModal={setModal} products={products} /> 
+            <EachProductCart setTotal={setTotal} setModal={setModal} products={products} /> 
             <ModalCart setUpdate={setUpdate} setModal={setModal} modal={modal} />
             {/* <StripeCart/> */}
-            <CartPayButton products={products} />
+            <CartPayButton total={total} products={products} />
         </div>
 
     )

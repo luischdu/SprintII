@@ -9,6 +9,7 @@ const ConstraintContainer = styled.div`
 
 const ComboDescriptionTitle = styled.p`
         color: ${color.blackColor};
+        margin-top: 30px;
         font-size: 20px;
         line-height: 24px;
         font-weight: 600;
@@ -30,7 +31,7 @@ function AddedComboDescription(props) {
     let description = "torta";
     if(props.categorie === "guajolotas"  || props.categorie === "tamales"){
         title = "Bebidas";
-        description = "bebida"
+        description = "bebida" 
     }
     return (
         <ConstraintContainer>

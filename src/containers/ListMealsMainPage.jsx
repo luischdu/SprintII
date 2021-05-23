@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import CardOrderSection from '../components/CardOrderSection';
-import AddedComboDescription from '../components/AddedComboDescription';
 import CardMainPage from '../components/CardMainPage.jsx';
 import NameMealsList from '../components/NameMealsList.jsx';
-import OrderSectionPayButton from '../components/OrderSectionPayButton';
-import { Link } from 'react-router-dom';
+
 export default class ListMealsMainPage extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +21,7 @@ export default class ListMealsMainPage extends Component {
     });
 
     axios
-      .get(`http://localhost:3004/${this.state.categorie}`)
+      .get(`https://api-fake-sprint-guappjalotas.herokuapp.com/db`)
       .then((res) => {
         this.setState({
           loading: false,
@@ -41,12 +38,6 @@ export default class ListMealsMainPage extends Component {
 
   componentDidMount() {
     this.fetchPetsData();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.categorie !== this.state.categorie) {
-      this.fetchPetsData();
-    }
   }
 
   handleClickSelection = (e, section) => {
@@ -69,9 +60,10 @@ export default class ListMealsMainPage extends Component {
         <NameMealsList
           onClick={this.handleClickSelection}
           categorie={this.state.categorie}
+          dbCategories={Object.keys(this.state.data)}
         />
 
-        <CardMainPage data={this.state.data} />
+        <CardMainPage data={this.state.data[this.state.categorie]} />
 
         {/* <AddedComboDescription categorie={this.state.categorie} /> */}
         {/* <CardOrderSection categorie={this.state.categorie} /> */}
