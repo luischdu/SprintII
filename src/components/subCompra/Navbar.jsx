@@ -15,8 +15,13 @@ const NavStyle = styled.div`
 export const Navbar = () => {
     return (
         <NavStyle>
+<<<<<<< HEAD
+            <Link to='/ww'><FontAwesomeIcon icon={faChevronLeft} /></Link> 
+            <FontAwesomeIcon icon={faShoppingCart} />
+=======
             <Link to='/'><FontAwesomeIcon icon={faChevronLeft} /></Link> 
             <Link to='/cart'><FontAwesomeIcon icon={faShoppingCart} /></Link>
+>>>>>>> d663430742ce5e0fd3e349e22596b2a8805afc18
         </NavStyle>
     )
 }

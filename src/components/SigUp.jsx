@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { DivIconBack } from './styles/Style.jsx';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import {
   FormImgStyle,
   InputStyle,
@@ -9,30 +14,44 @@ import {
   SpanFormStyle,
 } from './styles/Style.jsx';
 
-const SigUp = () => {
+const SigUp = (props) => {
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-const [listaUsers, setListaUsers] = useState([])
 
+  const { history } = props;
   let user = {
-      userName: name,
-      userLastname: lastname,
-      userMail: email,
-      pass: password
-  }
+    userName: name,
+    userLastname: lastname,
+    userMail: email,
+    pass: password,
+  };
 
   const validar = (event) => {
     event.preventDefault();
-    console.log('enviado');
-    localStorage.setItem('user', JSON.stringify(user))
+    const usuarioslist = JSON.parse(localStorage.getItem('users'));
+    usuarioslist.push(user);
+    localStorage.setItem('users', JSON.stringify(usuarioslist));
+    console.log(usuarioslist);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: `Registro exitoso!`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    history.push('/login');
   };
-  
-  
 
   return (
     <DivContainer>
+      <DivIconBack>
+        <FontAwesomeIcon
+          onClick={() => history.goBack()}
+          icon={faChevronLeft}
+        />
+      </DivIconBack>
       <form onSubmit={validar} action="">
         <FormImgStyle src="https://i.imgur.com/8aAwol7.png"></FormImgStyle>
         <H1Style>Registro</H1Style>
@@ -78,11 +97,15 @@ const [listaUsers, setListaUsers] = useState([])
         />
         <ButtonStyle type="submit">Registrarse</ButtonStyle>
         <PFormStyle>
-          Si aun no estas registrado<SpanFormStyle> Ingresa Aquí</SpanFormStyle>
+          Si aun no estas registrado
+          <SpanFormStyle onClick={() => history.push('/login')}>
+            {' '}
+            Ingresa Aquí
+          </SpanFormStyle>
         </PFormStyle>
       </form>
     </DivContainer>
   );
 };
 
-export default SigUp;
+export default withRouter(SigUp);
