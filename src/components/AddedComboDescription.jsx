@@ -9,6 +9,7 @@ const ConstraintContainer = styled.div`
 
 const ComboDescriptionTitle = styled.p`
         color: ${color.blackColor};
+        margin-top: 30px;
         font-size: 20px;
         line-height: 24px;
         font-weight: 600;
