@@ -8,7 +8,8 @@ import { useParams } from 'react-router';
 
 export const Comprar = () => {
   //Props para el Slide
-  const [Producto, setProducto] = React.useState(1);
+  const [Producto, setProducto] = React.useState('');
+  const [Categoria, setCategoria] = React.useState('');
   const [Boolean, setBoolean] = React.useState(false);
   const [Total, setTotal] = React.useState(1);
 
@@ -16,15 +17,27 @@ export const Comprar = () => {
   const handleClick = (eleccion) => {
     setProducto(eleccion);
   };
-
+  //Obetener id con react-router
   const { id } = useParams();
-  console.log(id);
+  //Obtener Categoria a partir del parametro
+  const actData = () => {
+    let newid = id.replace(/[1-9\-]/g,'')
+    newid === 'gua' && setCategoria('guajolotas');
+    newid === 'tam' && setCategoria('tamales');
+    newid === 'dri' && setCategoria('bebidas');
+  } 
+  //Actualizar Categoria y Producto
+  React.useEffect(() => {
+    actData()
+    setProducto(id)
+  }, [id])
 
   return (
     <>
       <Navbar />
       <Slider
         handleProducto={handleClick}
+        categoria={Categoria}
         producto={Producto}
         boolean={Boolean}
         setboolean={setBoolean}
@@ -32,11 +45,12 @@ export const Comprar = () => {
       <Amount Total={Total} setTotal={setTotal} />
       <Flavours
         clickProducto={handleClick}
+        categoria={Categoria}
         test={Producto}
         boolean={Boolean}
         setboolean={setBoolean}
       />
-      <Addcart Total={Total} Producto={Producto} />
+      <Addcart categoria={Categoria} Total={Total} Producto={Producto} />
     </>
   );
 };

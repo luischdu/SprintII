@@ -24,7 +24,7 @@ export default class ListMealsMainPage extends Component {
     });
 
     axios
-      .get(`http://localhost:3004/${this.state.categorie}`)
+      .get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${this.state.categorie}`)
       .then((res) => {
         this.setState({
           loading: false,

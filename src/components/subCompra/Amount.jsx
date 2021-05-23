@@ -24,6 +24,10 @@ const Ancle = styled.a`
     margin-right: 15px;
 `
 
+const H1 = styled.h1`
+    padding: 25px 0;
+`
+
 
 export const Amount = (props) => {
 
@@ -41,7 +45,7 @@ export const Amount = (props) => {
             <Ancle onClick={handleClick} >
                 <FontAwesomeIcon icon={faMinus} id="minus " />
             </Ancle>
-            <h1> {props.Total}</h1>
+            <H1> {props.Total}</H1>
             <Ancle onClick={handleClickPlus} >
                 <FontAwesomeIcon icon={faPlus} id="plus " />
             </Ancle>     

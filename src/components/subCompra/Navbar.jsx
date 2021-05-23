@@ -9,13 +9,14 @@ const NavStyle = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 25px 20px 0 20px;
+
 `
 
 export const Navbar = () => {
     return (
         <NavStyle>
             <Link to='/'><FontAwesomeIcon icon={faChevronLeft} /></Link> 
-            <FontAwesomeIcon icon={faShoppingCart} />
+            <Link to='/cart'><FontAwesomeIcon icon={faShoppingCart} /></Link>
         </NavStyle>
     )
 }

@@ -41,7 +41,7 @@ const Addcart = (props) => {
     }
     useEffect(() => {
         if(state) {
-            axios.post(`http://localhost:3000/cart/`, { compra })
+            axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, { compra })
                 .then(res => {
                     console.log(res.data);
                 })
@@ -50,7 +50,7 @@ const Addcart = (props) => {
     }, [shop])
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/guajolotas/${props.Producto}`)
+        axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${props.categoria}/${props.Producto}`)
             .then(res => setDato(res.data))
     }, [props.Producto])
 
