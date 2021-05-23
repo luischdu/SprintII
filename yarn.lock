@@ -7398,6 +7398,11 @@
     "unquote" "~1.1.1"
     "util.promisify" "~1.0.0"
 
+"sweetalert2@^11.0.9":
+  "integrity" "sha512-IEFWaTG+0YO5Zp7CVlqtokun++o+zVCY7dT5PT7eBk5Qj/4NmwDJG+4w5K0BrtXj5Olq3yt4UtvqZ3/kBla7YA=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.0.9.tgz"
+  "version" "11.0.9"
+
 "table@^6.0.4":
   "integrity" "sha512-SAM+5p6V99gYiiy2gT5ArdzgM1dLDed0nkrWmG6Fry/bUS/m9x83BwpJUOf1Qj/x2qJd+thL6IkIx7qPGRxqBw=="
   "resolved" "https://registry.npmjs.org/table/-/table-6.7.0.tgz"

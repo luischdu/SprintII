@@ -14,7 +14,7 @@ const NavStyle = styled.div`
 export const Navbar = () => {
     return (
         <NavStyle>
-            <Link to='/'><FontAwesomeIcon icon={faChevronLeft} /></Link> 
+            <Link to='/ww'><FontAwesomeIcon icon={faChevronLeft} /></Link> 
             <FontAwesomeIcon icon={faShoppingCart} />
         </NavStyle>
     )
