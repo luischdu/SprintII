@@ -87,7 +87,6 @@ export const Slider = (props) => {
     const [state, setstate] = useState({})
     const [control, setcontrol] = useState(true)
     const [moveState, setmoveState] = useState({})
-    const [arrTwo, serarrTwo] = useState({})
 
     //const [controlTwo, setcontrolTwo] = useState(false)
 
@@ -102,19 +101,19 @@ export const Slider = (props) => {
         let i = idArr.indexOf(props.producto)
         //console.log(props.producto.replace(/[a-z\-]/g,''));
         let arrOne = res.slice(i,);
-        let arrTwo = res.slice(0,i);
+        let arrTwo = res.slice(0, i);
         let arrTotal = [...arrOne, ...arrTwo];
         setstate(arrTotal)
-        let moveRight = arrOne.map(el => el.id.replace(/[a-z\-]/g,''))
-        let moveLeft = arrTwo.map(el => el.id.replace(/[a-z\-]/g,'') * -1)
+        let moveRight = arrOne.map(el => el.id.replace(/[a-z\-]/g, ''))
+        let moveLeft = arrTwo.map(el => el.id.replace(/[a-z\-]/g, '') * -1)
         setmoveState([...moveRight, ...moveLeft])
     }
 
     if (control) {
-        if (props.categoria){
+        if (props.categoria) {
             axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${props.categoria}`)
-                .then(res =>  remake(res.data))
-            setcontrol(false) 
+                .then(res => remake(res.data))
+            setcontrol(false)
         }
     }
 
@@ -172,18 +171,58 @@ export const Slider = (props) => {
 
     const Change = () => {
         if (slideshow.current != null) {
-            const arr = slideshow.current.children;
-            console.log(moveState);
-            const zeroState = slideshow.current.children[0].id
-            console.log(zeroState);
-            let idArr = [];
-            //Obtener posicion del Producto
-            for (let index = 0; index < state.length; index++) {
-                idArr = [...idArr, state[index].id.replace(/[a-z\-]/g,'')];
+            console.log('Anterior');
+            let nuevoProducto = props.producto.replace(/[a-z\-]/g, '')
+            console.log(nuevoProducto)
+            let primerElemento = slideshow.current.children[0].id.replace(/[a-z\-]/g, '');
+            console.log(primerElemento);
+            if (nuevoProducto < primerElemento) {
+                // Obtenemos el deseado por props
+                const index = props.producto;
+                console.log(slideshow);
+                const seleccion = slideshow.current.children[index];
+                slideshow.current.insertBefore(seleccion, slideshow.current.firstChild);
+                slideshow.current.style.transition = 'none';
+                const tamañoSlide = slideshow.current.children[0].offsetWidth;
+                slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
+
+                setTimeout(() => {
+                    slideshow.current.style.transition = `300ms ease-out all`;
+                    slideshow.current.style.transform = `translateX(0)`;
+                }, 30);
+                let item = slideshow.current.children[0].id;
+                props.handleProducto(item);
+            } else {
+                const index = props.producto;
+
+                const seleccion = slideshow.current.children[index];
+                slideshow.current.insertBefore(seleccion, slideshow.current.firstChild);
+                slideshow.current.style.transition = 'none';
+                const tamañoSlide = slideshow.current.children[0].offsetWidth;
+                slideshow.current.style.transform = `translateX(${tamañoSlide}px)`;
+
+                setTimeout(() => {
+                    slideshow.current.style.transition = `300ms ease-out all`;
+                    slideshow.current.style.transform = `translateX(0)`;
+                }, 30);
+
             }
-            let posicion = idArr.indexOf(props.producto.id.replace(/[a-z\-]/g,''));
-            console.log(posicion);
-            console.log(idArr);
+
+
+
+
+            // const arr = slideshow.current.children;
+            // console.log(moveState);
+            // const zeroState = slideshow.current.children[0].id
+            // console.log(zeroState);
+            // let idArr = [];
+            // //Obtener posicion del Producto
+            // for (let index = 0; index < state.length; index++) {
+            //     idArr = [...idArr, state[index].id.replace(/[a-z\-]/g,'')];
+            // }
+            // let posicion = idArr.indexOf(props.producto.id.replace(/[a-z\-]/g,''));
+            // console.log(posicion);
+            // console.log(idArr);
             // let arrOne = idArr.slice(posicion,);
             // console.log(arrOne);
             // let arrTwo = idArr.slice(0,posicion);
@@ -196,35 +235,35 @@ export const Slider = (props) => {
         }
     }
 
-/* useEffect( () => {
-    axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${props.categoria}`)
-        .then(res =>  setstate(res.data))             
-}, []) */
+    /* useEffect( () => {
+        axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${props.categoria}`)
+            .then(res =>  setstate(res.data))             
+    }, []) */
 
-useEffect(() => {
-    props.boolean && document.addEventListener('DOMContentLoaded', Change());
-}, [props])
+    useEffect(() => {
+        props.boolean && document.addEventListener('DOMContentLoaded', Change());
+    }, [props])
 
 
 
-return (
-    !state.length
-        ? <h1>Cargando.....</h1>
-        : <MainStyle><Container><Slideshow ref={slideshow}> {state.map(product =>
-            <Slide key={product.id} id={product.id}>
-                <Dimg><Img src={product.imageUrl} alt={product.name} id={product.id} /></Dimg>
-                <DivStyle><Guajolota>{product.name}</Guajolota>
-                    <Price>${product.price} MXN</Price></DivStyle></Slide>
-        )}</Slideshow>
-            <Controls id="Controles">
-                <ButtonS onClick={prev} >
-                    <FontAwesomeIcon icon={faChevronLeft} />
-                </ButtonS>
-                <ButtonS derecho onClick={next}>
-                    <FontAwesomeIcon icon={faChevronRight} />
-                </ButtonS>
-            </Controls></Container>
-        </MainStyle>
+    return (
+        !state.length
+            ? <h1>Cargando.....</h1>
+            : <MainStyle><Container><Slideshow ref={slideshow}> {state.map(product =>
+                <Slide key={product.id} id={product.id}>
+                    <Dimg><Img src={product.imageUrl} alt={product.name} id={product.id} /></Dimg>
+                    <DivStyle><Guajolota>{product.name}</Guajolota>
+                        <Price>${product.price} MXN</Price></DivStyle></Slide>
+            )}</Slideshow>
+                <Controls id="Controles">
+                    <ButtonS onClick={prev} >
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                    </ButtonS>
+                    <ButtonS derecho onClick={next}>
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </ButtonS>
+                </Controls></Container>
+            </MainStyle>
 
-)
+    )
 }
