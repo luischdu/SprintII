@@ -13,8 +13,9 @@ export const GlobalStyle = createGlobalStyle`
         
         background: ${color.greyColor};
     }
-    html{
-        font-size: 62.5%;
+
+    a{
+        text-decoration:none;
     }
 `;
 

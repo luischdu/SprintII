@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useEffect } from 'react'
+import styled, {createGlobalStyle} from 'styled-components'
 import color from "../assets/predeterminatedStyles"
 
 const TotalPriceContainer = styled.div`
@@ -30,6 +30,10 @@ const TotalPriceValue = styled.p`
 
 function CartTotalPrice(props) {
 
+    useEffect(() => {
+          props.setTotal(total)
+    }, [props])
+
     // let total = props.products.reduce((previous) => previous.quantity*previous.price + current.quantity*current.price,0)
     let total = 0;
     for (const product of props.products) {
@@ -39,7 +43,7 @@ function CartTotalPrice(props) {
     return (
             <TotalPriceContainer>
                 <TotalPriceTitle>Total</TotalPriceTitle>
-                <TotalPriceValue>${total} MXN</TotalPriceValue>
+                <TotalPriceValue >${total} MXN</TotalPriceValue>
             </TotalPriceContainer>
 
     )

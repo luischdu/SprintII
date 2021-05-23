@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import color from '../assets/predeterminatedStyles';
 
+const GlobalStyle = createGlobalStyle`
+
+    a{
+      text-decoration: none;
+    }
+  `
 
 const EachMealCard = styled.div`
   background-color: white;
@@ -10,9 +16,10 @@ const EachMealCard = styled.div`
   padding: 16px;
   border-radius: 20px;
   max-width: 87%;
-  margin: 16px auto;
+  margin: 0 auto;
   display: flex;
   cursor: pointer;
+  
 `;
 
 const EachMealImage = styled.img`
@@ -31,6 +38,7 @@ const EachMealFlavor = styled.p`
   font-size: 17px;
   font-weight: 600;
   line-height: 21px;
+  text-decoration: none;
 `;
 
 const EachMealPrice = styled.p`
@@ -38,21 +46,25 @@ const EachMealPrice = styled.p`
   font-size: 14px;
   font-weight: 600;
   line-height: 17px;
+  text-decoration: none;
 `;
 
 function CardMainPage(props) {
   return (
     <div>
+      <GlobalStyle/>
       {props.data.map((eachMeal) => {
         return (
-            
-          <EachMealCard key={eachMeal.id}>
-           <Link to={`/shop/${eachMeal.id}`}> <EachMealImage src={eachMeal.imageUrl} /></Link>
+          <Link to={`/shop/${eachMeal.id}`} key={eachMeal.id} > 
+          <EachMealCard >
+           <EachMealImage src={eachMeal.imageUrl} />
             <EachMealDescriptionContainer>
               <EachMealFlavor>{eachMeal.name}</EachMealFlavor>
               <EachMealPrice>$ {eachMeal.price} MXN</EachMealPrice>
             </EachMealDescriptionContainer>
           </EachMealCard>
+          </Link>
+          
         );
       })}
     </div>

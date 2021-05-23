@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
 import color from "../assets/predeterminatedStyles"
-import dbGuappjolotas from "../../api/dbGuappjolotas.json"
 
 const ConstraintContainer = styled.div`
         max-width: 87%;
@@ -24,7 +23,7 @@ const TitleMealsList = styled.p`
 function NameMealsList(props) {
     return (
         <ConstraintContainer>{
-                Object.keys(dbGuappjolotas).map(eachTitle =>{
+                props.dbCategories.filter(el => el != "cart").map(eachTitle =>{
                     if(eachTitle == props.categorie){
                         return <TitleMealsList key={eachTitle}  cursor="default" border={`3px solid ${color.primaryColor}`} color={color.primaryColor}
                         onClick={(e) =>{ 

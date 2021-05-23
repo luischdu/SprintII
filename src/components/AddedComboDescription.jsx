@@ -30,7 +30,7 @@ function AddedComboDescription(props) {
     let description = "torta";
     if(props.categorie === "guajolotas"  || props.categorie === "tamales"){
         title = "Bebidas";
-        description = "bebida"
+        description = "bebida" 
     }
     return (
         <ConstraintContainer>
