@@ -5,7 +5,6 @@ import { Comprar } from '../components/Comprar';
 import Login from '../components/Login';
 import Navbar from '../components/Navbar';
 import SigUp from '../components/SigUp';
-import Title from '../components/Title';
 import CartPage from '../containers/CartPage';
 import ListMealsMainPage from '../containers/ListMealsMainPage';
 
@@ -16,7 +15,6 @@ const Routes = () => {
         <Switch>
           <Route exact path="/">
             <Navbar />
-            <Title />
             <Buscador />
             <ListMealsMainPage />
           </Route>

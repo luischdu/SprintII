@@ -6,7 +6,8 @@ const color = {
      yellowColor :  "#FCB235" ,
      pinkColor : "#F18F8C" ,
      brownColor  : "#410F18" ,
-     greyColor :  "#E5E5E5" 
+     greyColor :  "#F2F2F2" 
+     // greyColor :  "#E5E5E5" 
 }
 
 export default color;

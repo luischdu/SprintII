@@ -1,7 +1,12 @@
 import styled, { css, createGlobalStyle } from 'styled-components'
 import color from '../assets/predeterminatedStyles'
 
+
+
 export const GlobalStyle = createGlobalStyle`
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
     *{
         box-sizing: border-box;
         margin: 0;
@@ -9,8 +14,13 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
         vertical-align: baseline;
     }
+
+    html{
+        font-size: 62.5%;
+    }
+
     body{
-        
+        font-family: 'Inter', sans-serif;
         background: ${color.greyColor};
     }
 
@@ -29,7 +39,7 @@ export const FormBuscador = styled.div`
     width:90%;
     margin-left:auto;
     margin-right:auto;
-    margin-top:27.5rem;
+    margin-top:1rem;
     margin-bottom:1rem;
     background: #E7E7E7;
     border-radius: 3rem;
@@ -37,20 +47,20 @@ export const FormBuscador = styled.div`
 
     ${props => props.modal && css`
         margin-top:1rem;
-        width: 75%;
+        width: 70%;
 
         animation: slideup ease-in-out 1s;
         
         @keyframes slideup{
             from {
-                margin-top:27.5rem;
+                margin-top:40vh;
                 width: 90%;
                 margin-left:auto;
             }
 
             to {
                 margin-top:1rem;
-                width: 75%;
+                width: 70%;
                 margin-left:auto;
             }
         }
@@ -70,7 +80,7 @@ export const IBuscador = styled.i`
     font-size: 2rem;
     ${props => props.modal && css`
         font-size: 15rem;
-        margin-left:20%;
+        margin-left:auto;
         margin-right:auto;
         opacity:0.5;
         width: 15rem;
@@ -80,7 +90,9 @@ export const IBuscador = styled.i`
 
 export const InputBuscador = styled.input`
     font-size: 1.7rem;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
+    font-style: normal;
     line-height: 2.1rem;
     background-color: transparent;
     width: 100%;
@@ -98,12 +110,12 @@ export const InputBuscador = styled.input`
 
 export const ContenedorModalBuscador = styled.div`
     min-width: 100%;
-    min-height: 100vh;
+    min-height: 200%;
     width: auto;
     height: auto;
     background: #fff;
-    position: absolute;
-    top:0rem;
+    position:absolute;
+    top:-0.2rem;
     left:0rem;
     z-index: 100;
     justify-content: center;
@@ -138,8 +150,10 @@ export const CierreBotonModalBuscador = styled.button`
     border: none;
     outline: none;
     font-size: 1.7rem;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     line-height: 2.1rem;
+    font-weight: 500;
+    font-style: normal;
 
     animation: cierre ease-in-out 1s;
     @keyframes cierre{
@@ -149,7 +163,7 @@ export const CierreBotonModalBuscador = styled.button`
         }
 
         99% {
-            opacity:0.5;
+            opacity:0.1;
         }
 
         100% {
@@ -169,7 +183,6 @@ export const ContenedorBotonesBuscador = styled.div`
 `;
 
 export const DivBuscador = styled.div`
-    
 
     ${props => props.modal && css`
         width: auto;
@@ -190,8 +203,11 @@ export const MensajeBuscador = styled.div`
     margin-right:auto;
     margin-top:20rem;
     font-size: 1.7rem;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
     line-height: 2.1rem;
+    font-weight: 600;
+    text-align: center;
 `;
 
 export const SectionBuscador = styled.section`
@@ -203,5 +219,14 @@ export const SpanBuscador = styled.span`
 `
 
 export const H1Buscador = styled.h1`
+    
+    ${props => props.modal && css`
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 3.4rem;
+        line-height: 4.1rem;
+        text-align:center;
+    `};
 
 `
