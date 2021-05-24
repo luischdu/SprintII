@@ -6,7 +6,7 @@ import axios from "axios"
 
 const ConstraintContainer = styled.div`
         max-width: 87%;
-        margin: auto;
+        margin: 0 auto 70px auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -75,13 +75,12 @@ function CardOrderSection(props) {
                 radio.previousElementSibling.alt = "unchecked";
                 radio.previousElementSibling.src = "https://i.imgur.com/9aDeHNA.png";
                 radio.checked = false;
-
             }
         }
         let extraMealExists = document.querySelector("input[type='checkbox']:checked")
         console.log(extraMealExists,eachMealInfo)
-        
-        
+        eachMealInfo.quantity = 1
+        extraMealExists ? props.setCombo(eachMealInfo) :  props.setCombo(null);
     }
     let mealCategorie;
 

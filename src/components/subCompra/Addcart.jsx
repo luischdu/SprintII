@@ -17,6 +17,7 @@ const Button = styled.button`
     border-radius: 40px;
     width: 312px;
     height: 69px;
+    z-index: 200;
     
 `
 
@@ -24,30 +25,48 @@ const Addcart = (props) => {
     const [state, setstate] = useState(false)
     const [Dato, setDato] = useState({})
    // setvalores(data)
-    const [compra, setcompra] = useState({
-        "producto": "",
-        "cantidad": "",
-        "preciototal": ""
-    })
+    const [compra, setcompra] = useState(null)
+    const [compraCombo, setcompraCombo] = useState(null)
 
     const shop = () => {
         let newPrice = Dato.price * props.Total;
         setcompra({
-            "producto": Dato.name,
-            "cantidad": props.Total,
-            "preciototal": newPrice
+            "id": Dato.id,
+            "flavor": Dato.flavor,
+            "imageUrl": Dato.imageUrl,
+            "imageAlt": Dato.imageAlt,
+            "name": Dato.name,
+            "price": Dato.price,
+            "quantity": props.Total
         });
+        setcompraCombo(props.Combo)
         !state && setstate(true)
     }
+
     useEffect(() => {
-        if(state) {
-            axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, { compra })
+        if(state && compra) {
+            if(compraCombo){
+                delete compra.id;
+                delete compraCombo.id;
+                axios.post(`https://api-guappjalotas.herokuapp.com/cart`, compra)
                 .then(res => {
-                    console.log(res.data);
+                    console.log(res)
+                    return axios.post(`https://api-guappjalotas.herokuapp.com/cart`, compraCombo)
+                }).then(res => 
+                    console.log(res))
+                setstate(false)
+                }else{
+                    delete compra.id;
+                axios.post(`https://api-guappjalotas.herokuapp.com/cart`, compra)
+                .then(res => {
+                    console.log(res)
                 })
-            setstate(false)
+            }
+            
         }
+        
     }, [shop])
+
 
     useEffect(() => {
         axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${props.categoria}/${props.Producto}`)

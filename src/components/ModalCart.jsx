@@ -5,7 +5,7 @@ import QuantityButton from './QuantityButton'
 
 
 const ModalContainer = styled.div`
-        position: absolute;
+        position: fixed;
         top: -2px;
         left: -2px;
         height: calc(100vh - 1px);

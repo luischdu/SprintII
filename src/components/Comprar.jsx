@@ -5,6 +5,8 @@ import { Navbar } from './subCompra/Navbar';
 import { Flavours } from './subCompra/Flavours';
 import Addcart from './subCompra/Addcart';
 import { useParams } from 'react-router';
+import AddedComboDescription from './AddedComboDescription';
+import CardOrderSection from './CardOrderSection';
 
 export const Comprar = () => {
   //Props para el Slide
@@ -12,7 +14,7 @@ export const Comprar = () => {
   const [Categoria, setCategoria] = React.useState('');
   const [Boolean, setBoolean] = React.useState(false);
   const [Total, setTotal] = React.useState(1);
-
+  const [Combo, setCombo] = React.useState(null);
   //Obtener Props del Componente sabores
   const handleClick = (eleccion) => {
     setProducto(eleccion);
@@ -50,7 +52,9 @@ export const Comprar = () => {
         boolean={Boolean}
         setboolean={setBoolean}
       />
-      <Addcart categoria={Categoria} Total={Total} Producto={Producto} />
+      <AddedComboDescription categorie={Categoria}/>
+      <CardOrderSection categorie={Categoria} setCombo={setCombo}/>
+      <Addcart categoria={Categoria} Total={Total} Producto={Producto} Combo={Combo}  />
     </>
   );
 };

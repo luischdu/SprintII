@@ -2,7 +2,7 @@ import React from 'react'
 //Debo instalar las dependencias de Stripe
 import {loadStripe} from "@stripe/stripe-js"
 import {Elements, CardElement, useStripe, useElements} from "@stripe/react-stripe-js"
-
+import axios from "axios"
 
 
 //Conexión a Stripe mediante una llave pública
@@ -25,15 +25,11 @@ const CheckoutForm = () =>{
             card: elements.getElement(CardElement)
         })
         .then(paymentMethod => {
-            paymentMethodReq=paymentMethod;
-            console.log(paymentMethodReq);
+            const id = paymentMethod.paymentMethod.id
+            console.log(id);   
         })
-        // .catch(error => console.log(error))
-
-        
-        //billing_details : billingDetails
-
-        // let pu = paymentMethodReq.then(e => e)
+        // return axios.get("http://localhost:3001/api/checkout")
+        // .then(data => console.log(data))
     }
 
     return <form onSubmit={handleSubmit} >
