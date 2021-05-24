@@ -30,7 +30,8 @@ const Navbar = (props) => {
       <HeaderStyle>
         <ImgLogoStyle src="https://i.imgur.com/8aAwol7.png" alt="logo" />{' '}
         <DivEnd>
-          <FontAwesomeIcon icon={faShoppingCart} />
+          <FontAwesomeIcon onClick={() => history.push('/cart')}
+          icon={faShoppingCart} />
           <FontAwesomeIcon
             onClick={() => history.push('/login')}
             icon={faUser}
