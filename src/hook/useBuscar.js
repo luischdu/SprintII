@@ -21,9 +21,7 @@ export const useBuscar = (inicial) => {
         } else {
             return (useListadoDeComidas(data).filter((comida) => {
                 return (
-                    comida.name.toLowerCase().includes(buscar.toLowerCase())
-                    // ||
-                    // comida.type.toLowerCase().includes(buscar.toLowerCase())
+                    comida.name.toLowerCase().includes(buscar.toLowerCase()) || comida.type.toLowerCase().includes(buscar.toLowerCase())
                 );
             }));
 
