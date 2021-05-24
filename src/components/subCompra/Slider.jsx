@@ -86,10 +86,8 @@ const ButtonS = styled.button`
 export const Slider = (props) => {
     const [state, setstate] = useState({})
     const [control, setcontrol] = useState(true)
-    const [moveState, setmoveState] = useState({})
-
+    //const [moveState, setmoveState] = useState({})
     //const [controlTwo, setcontrolTwo] = useState(false)
-
     //const [pastelear, setpastelear] = useState({})
     const slideshow = useRef(null);
 

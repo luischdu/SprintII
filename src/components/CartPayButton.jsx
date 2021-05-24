@@ -1,6 +1,7 @@
 import React from 'react'
 import color from "../assets/predeterminatedStyles"
 import styled from "styled-components"
+import { Link } from 'react-router-dom'
 
 const PayButtonContainer = styled.div`
         height: 101px;
@@ -38,16 +39,19 @@ function CartPayButton(props) {
     let opacity;
     let cursor;
     let events;
-    if(!props.products.length){
+    if (!props.products.length) {
         opacity = "0.5"
         cursor = "default"
         events = "none"
     }
+    
     return (
         <PayButtonContainer>
-            <PayButton onClick={()=>console.log(props.total)} events={events} cursor={cursor} opacity={opacity} >
-                <PayButtonText>Pagar</PayButtonText>
-            </PayButton>
+            <Link to="/payment">
+                <PayButton onClick={() => console.log(props.total)} events={events} cursor={cursor} opacity={opacity} >
+                    <PayButtonText>Pagar</PayButtonText>
+                </PayButton>
+            </Link>
         </PayButtonContainer>
     )
 }
