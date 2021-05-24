@@ -6,7 +6,7 @@
 Con Guappjolotas puedes iniciar tu día con la mejor energia :energy: :smile: ordenando tu guajalota, tamal o bebida favorita :sparkles:
 
 
-Puedes ver el proyecto [aquí](https://60ab2bd0f1a98400090f27be--vigilant-bose-b9ad67.netlify.app/)
+Puedes ver el proyecto [aquí](https://vigilant-bose-b9ad67.netlify.app/)
 
 ## :computer: Requerimientos
 
