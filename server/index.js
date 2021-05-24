@@ -21,7 +21,6 @@ app.post('/api/checkout', async (req, res) => {
             payment_method: id,
             confirm: true
         })
-        console.log(payment);
         res.send({ message: 'Succesfull payment' });
     } catch (error) {
         console.log(error);

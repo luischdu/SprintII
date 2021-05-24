@@ -39,20 +39,19 @@ function CartPayButton(props) {
     let opacity;
     let cursor;
     let events;
-    if (!props.products.length) {
+    if(!props.products.length){
         opacity = "0.5"
         cursor = "default"
         events = "none"
     }
-    
     return (
+        <Link to={`/payment/20000`}>
         <PayButtonContainer>
-            <Link to="/payment">
-                <PayButton onClick={() => console.log(props.total)} events={events} cursor={cursor} opacity={opacity} >
-                    <PayButtonText>Pagar</PayButtonText>
-                </PayButton>
-            </Link>
+            <PayButton events={events} cursor={cursor} opacity={opacity} >
+                <PayButtonText>Pagar</PayButtonText>
+            </PayButton>
         </PayButtonContainer>
+        </Link>
     )
 }
 
