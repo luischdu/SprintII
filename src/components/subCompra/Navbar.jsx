@@ -22,10 +22,8 @@ export const Navbar = () => {
     }
     return (
         <NavStyle>
-
             <FontAwesomeIcon onClick={handleClick} icon={faChevronLeft} />
             <Link to='/cart'><FontAwesomeIcon icon={faShoppingCart} /></Link>
-
         </NavStyle>
     )
 }

@@ -5,7 +5,6 @@ import { Comprar } from '../components/Comprar';
 import Login from '../components/Login';
 import Navbar from '../components/Navbar';
 import SigUp from '../components/SigUp';
-import Title from '../components/Title';
 import CartPage from '../containers/CartPage';
 import ListMealsMainPage from '../containers/ListMealsMainPage';
 import Animacion from '../components/Animacion.jsx';
@@ -37,7 +36,6 @@ const Routes = () => {
           ) : (
             <Route exact path="/">
               <Navbar />
-              <Title />
               <Buscador />
               <ListMealsMainPage />
             </Route>

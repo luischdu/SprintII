@@ -1,7 +1,12 @@
 import styled, { css, createGlobalStyle } from 'styled-components'
 import color from '../assets/predeterminatedStyles'
 
+
+
 export const GlobalStyle = createGlobalStyle`
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
     *{
         box-sizing: border-box;
         margin: 0;
@@ -9,8 +14,13 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
         vertical-align: baseline;
     }
+
+    html{
+        font-size: 62.5%;
+    }
+
     body{
-        
+        font-family: 'Inter', sans-serif;
         background: ${color.greyColor};
     }
 
@@ -19,7 +29,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export const Form = styled.div`
+export const FormBuscador = styled.div`
     display: flex;
     flex-wrap:flex;
     align-items: center;
@@ -29,7 +39,7 @@ export const Form = styled.div`
     width:90%;
     margin-left:auto;
     margin-right:auto;
-    margin-top:27.5rem;
+    margin-top:1rem;
     margin-bottom:1rem;
     background: #E7E7E7;
     border-radius: 3rem;
@@ -37,20 +47,20 @@ export const Form = styled.div`
 
     ${props => props.modal && css`
         margin-top:1rem;
-        width: 75%;
+        width: 70%;
 
         animation: slideup ease-in-out 1s;
         
         @keyframes slideup{
             from {
-                margin-top:27.5rem;
+                margin-top:40vh;
                 width: 90%;
                 margin-left:auto;
             }
 
             to {
                 margin-top:1rem;
-                width: 75%;
+                width: 70%;
                 margin-left:auto;
             }
         }
@@ -58,19 +68,19 @@ export const Form = styled.div`
     `};
 `;
 
-export const Button = styled.button`
+export const ButtonBuscador = styled.button`
     line-height: 1;
     background-color: transparent;
     border: none;
     outline: none;
 `;
 
-export const I = styled.i`
+export const IBuscador = styled.i`
     color: Black;
     font-size: 2rem;
     ${props => props.modal && css`
         font-size: 15rem;
-        margin-left:20%;
+        margin-left:auto;
         margin-right:auto;
         opacity:0.5;
         width: 15rem;
@@ -78,9 +88,11 @@ export const I = styled.i`
     `};
 `;
 
-export const Input = styled.input`
+export const InputBuscador = styled.input`
     font-size: 1.7rem;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
+    font-style: normal;
     line-height: 2.1rem;
     background-color: transparent;
     width: 100%;
@@ -96,16 +108,16 @@ export const Input = styled.input`
     }
 `;
 
-export const ContenedorModal = styled.div`
+export const ContenedorModalBuscador = styled.div`
     min-width: 100%;
-    min-height: 100%;
+    min-height: 200%;
     width: auto;
     height: auto;
     background: #fff;
-    position: absolute;
-    top:0rem;
+    position:absolute;
+    top:-0.2rem;
     left:0rem;
-    z-index: 10;
+    z-index: 100;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -130,7 +142,7 @@ export const ContenedorModal = styled.div`
     }
 `;
 
-export const CierreBotonModal = styled.button`
+export const CierreBotonModalBuscador = styled.button`
     cursor: pointer;
     padding: 0;
     line-height: 1;
@@ -138,8 +150,10 @@ export const CierreBotonModal = styled.button`
     border: none;
     outline: none;
     font-size: 1.7rem;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     line-height: 2.1rem;
+    font-weight: 500;
+    font-style: normal;
 
     animation: cierre ease-in-out 1s;
     @keyframes cierre{
@@ -149,7 +163,7 @@ export const CierreBotonModal = styled.button`
         }
 
         99% {
-            opacity:0.5;
+            opacity:0.1;
         }
 
         100% {
@@ -159,7 +173,7 @@ export const CierreBotonModal = styled.button`
     }
 `;
 
-export const ContenedorBotones = styled.div`
+export const ContenedorBotonesBuscador = styled.div`
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
@@ -168,16 +182,19 @@ export const ContenedorBotones = styled.div`
     margin-right:auto;
 `;
 
-export const Div = styled.div`
-    width: auto;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    margin-left:auto;
-    margin-right:auto;
+export const DivBuscador = styled.div`
+
+    ${props => props.modal && css`
+        width: auto;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        margin-left:auto;
+        margin-right:auto;
+    `};
 `;
 
-export const Mensaje = styled.div`
+export const MensajeBuscador = styled.div`
     width: 25rem;
     height: auto;
     justify-content: center;
@@ -186,6 +203,30 @@ export const Mensaje = styled.div`
     margin-right:auto;
     margin-top:20rem;
     font-size: 1.7rem;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
     line-height: 2.1rem;
+    font-weight: 600;
+    text-align: center;
 `;
+
+export const SectionBuscador = styled.section`
+
+`
+
+export const SpanBuscador = styled.span`
+
+`
+
+export const H1Buscador = styled.h1`
+    
+    ${props => props.modal && css`
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 3.4rem;
+        line-height: 4.1rem;
+        text-align:center;
+    `};
+
+`
