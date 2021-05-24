@@ -45,7 +45,7 @@ function CartPayButton(props) {
         events = "none"
     }
     return (
-        <Link to={`/payment/20000`}>
+        <Link to={`/payment/${props.total}`}>
         <PayButtonContainer>
             <PayButton events={events} cursor={cursor} opacity={opacity} >
                 <PayButtonText>Pagar</PayButtonText>

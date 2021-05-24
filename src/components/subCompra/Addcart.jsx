@@ -19,7 +19,6 @@ const Button = styled.button`
     width: 312px;
     height: 69px;
     z-index: 200;
-    
 `
 
 const Addcart = (props) => {
