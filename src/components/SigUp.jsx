@@ -30,18 +30,30 @@ const SigUp = (props) => {
 
   const validar = (event) => {
     event.preventDefault();
-    const usuarioslist = JSON.parse(localStorage.getItem('users'));
-    usuarioslist.push(user);
-    localStorage.setItem('users', JSON.stringify(usuarioslist));
-    console.log(usuarioslist);
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: `Registro exitoso!`,
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    history.push('/login');
+    if (localStorage.getItem('users') === !null) {
+      let usuarioslist = JSON.parse(localStorage.getItem('users'));
+      usuarioslist.push(user);
+      localStorage.setItem('users', JSON.stringify(usuarioslist));
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: `Registro exitoso!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      history.push('/login');
+    } else {
+      console.log(localStorage.getItem('users'));
+      localStorage.setItem('users', JSON.stringify([user]))
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: `Registro exitoso!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      history.push('/login');
+    }
   };
 
   return (
