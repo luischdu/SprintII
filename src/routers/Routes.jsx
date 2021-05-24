@@ -35,7 +35,6 @@ const Routes = () => {
           ) : (
             <Route exact path="/">
               <Navbar />
-              <Title />
               <Buscador />
               <ListMealsMainPage />
             </Route>
