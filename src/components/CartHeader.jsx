@@ -2,7 +2,7 @@ import React from 'react';
 import color from '../assets/predeterminatedStyles';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-// import { useHistory } from 'react-router'
+import { useHistory } from 'react-router'
 
 const ConstraintContainer = styled.div`
   max-width: 87%;
@@ -17,6 +17,7 @@ const HeaderBackArrow = styled.div`
   width: 24px;
   cursor: pointer;
   position: absolute;
+  top: 46px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,13 +35,11 @@ const HeaderTitle = styled.p`
 `;
 
 function CartHeader() {
-  // let history = useHistory();
+  let history = useHistory();
 
   return (
     <ConstraintContainer>
-      <Link to="/">
-      <HeaderBackArrow></HeaderBackArrow>
-      </Link>
+      <HeaderBackArrow onClick={()=>history.goBack()} ></HeaderBackArrow>
         
       <HeaderTitle>Carrito</HeaderTitle>
     </ConstraintContainer>

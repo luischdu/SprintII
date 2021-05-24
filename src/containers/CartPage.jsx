@@ -6,11 +6,12 @@ import EachProductCart from '../components/EachProductCart'
 import ModalCart from '../components/ModalCart'
 import StripeCart from '../components/StripeCart'
 import {createGlobalStyle} from "styled-components"
+import color from "../assets/predeterminatedStyles"
 
 const GlobalStyle = createGlobalStyle`
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+        body{
+            background-color:${color.greyColor};
+        }
     `
 
 
@@ -24,10 +25,8 @@ function CartPage() {
 
     const mounted = useRef();
     useEffect(() => {
-        console.log(mounted);
         if (!mounted.current) {
             mounted.current = true;
-            console.log(mounted)
             axios("https://api-fake-sprint-guappjalotas.herokuapp.com/cart")
         .then(res => {
         
@@ -40,7 +39,6 @@ function CartPage() {
             if(!update[0].quantity){
                 axios.delete(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart/${update[0].id}`)
                 .then(res => {
-                    console.log(res);
                     return axios(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart/`)
                 }).then(response => {
         
@@ -51,7 +49,6 @@ function CartPage() {
                 axios.put(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart/${update[0].id}
                 `, update[0])
                 .then(res => {
-                    console.log(res);
                     return axios(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart/`)
                 }).then(response => {
         
