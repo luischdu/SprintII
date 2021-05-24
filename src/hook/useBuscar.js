@@ -1,52 +1,32 @@
-import React, { useState, useMemo } from 'react';
-//import {useBd} from './useBd';
-import ListaComidas from '../Bsdate/dbGuappjolotas.json';
-import { Mensaje, I } from '../Styles/Style';
-// Arreglar Estilos
-//
+import { useState, useMemo } from 'react';
+import { useBd } from './useBd';
+import { useListadoDeComidas } from './useListadoDeComidas'
+
+//busca los datos de la base de datos y los compara con el objeto a buscar
 export const useBuscar = (inicial) => {
-    // const {loading,data}=useBd("https://restcountries.eu/rest/v2/all");
-    // const {}=!!data && data
+
+    //baja la informacion de la Api haciendo las peticciones desde el useBd
+    const { data } = useBd(`https://api-fake-sprint-guappjalotas.herokuapp.com/db`);
+
+    //el estado de busqueda, quien inicializa todo
     const [buscar, setBuscar] = useState(inicial);
 
+    //manda los cambios cada que se escribe algo
     const escribir = (b) => setBuscar(b.target.value);
 
+    //guarda la lista de objetos que se esta buscando
     const comidas = useMemo(() => {
         if (!buscar) {
             return [{ "name": "Escriba la comida a buscar" }];
         } else {
-            return ListaComidas.filter((comida) => {
+            return (useListadoDeComidas(data).filter((comida) => {
                 return (
-                    comida.name.toLowerCase().includes(buscar.toLowerCase()) ||
-                    comida.type.toLowerCase().includes(buscar.toLowerCase())
+                    comida.name.toLowerCase().includes(buscar.toLowerCase()) || comida.type.toLowerCase().includes(buscar.toLowerCase())
                 );
-            });
+            }));
+
         };
     }, [buscar]);
 
-
-    const ListaComidasId = ({ name, type, imageUrl }) => {
-
-        if (name === "Escriba la comida a buscar") {
-            return (
-                <Mensaje>
-                    <I modal className="fas fa-search"></I>
-                    <h1>Realiza una Busqueda</h1>
-                </Mensaje>
-            )
-        } else {
-            return (
-                <li>
-                    <div>
-                        <img src={imageUrl} style={{ width: "10rem" }} alt="" />
-                    </div>
-                    <div>
-                        {name} <span>{type}</span>
-                    </div>
-                </li>
-            )
-        }
-    };
-
-    return { buscar, escribir, comidas, ListaComidasId };
+    return { buscar, escribir, comidas };
 };
