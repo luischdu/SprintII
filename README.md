@@ -6,9 +6,13 @@
 Con Guappjolotas puedes iniciar tu día con la mejor energia :energy: :smile: ordenando tu guajalota, tamal o bebida favorita :sparkles:
 
 
-Puedes verlo aquí: <link_para_ver>
+Puedes ver el proyecto [aquí](https://60ab2bd0f1a98400090f27be--vigilant-bose-b9ad67.netlify.app/)
 
-## Requerimientos
+## :computer: Requerimientos
+
+Debes contar en tu pc con `NPM` y `Node.js` para instalarlos ingresa [aquí](https://nodejs.org/en/)
+
+## :technologist: Para obtener el proyecto
 
 Para clonar este repositorio realiza el siguiente comando:
 
@@ -35,22 +39,16 @@ una vez se descargen todas las dependencias, ejecuta el siguiente comando para e
 npm start
 ```
 
-
-## 🔍 Vistas 
-
-### 💻 Desktop
-
-
+## 🔍 Vista
 
 ### 📱 Mobile
+A continuación se presenta la vista de carga en un dispositivo mobile
+<br></br>
+<img src='https://i.imgur.com/eCiDRnf.jpg' alt='carga-app' width=50%>
+<br></br>
+<img src='https://i.imgur.com/m1eD2tW.jpg' alt='main-page' width=50%>
 
-
-
-## 📌 Stack
-
-
-
-## 🌟 Autor
+## :man_technologist: Autores
 
 * **Luis Chávez**  - [@luischdu](https://github.com/luischdu)
 * **Jhosep Ropero**  - [@J-Roma](https://github.com/J-Roma)
