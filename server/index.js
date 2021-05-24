@@ -6,8 +6,8 @@ const app = express();
 
 const stripe = new Stripe("sk_test_51IuQhODxWwRTK4xqrhuMON11XQJDsXmYgiUIxocDCo8HZ5j7SoWOsgupVYjEcvnwK59k6EBkbnFAZnHgtKvBeku200QFtNykXP")
 
-app.use(cors({ origin: 'http://localhost:3005' }))
-
+app.use(cors({ origin: 'https://60ab2bd0f1a98400090f27be--vigilant-bose-b9ad67.netlify.app' }))
+//https://60ab2bd0f1a98400090f27be--vigilant-bose-b9ad67.netlify.app
 app.use(express.json())
 
 app.post('/api/checkout', async (req, res) => {
@@ -21,7 +21,6 @@ app.post('/api/checkout', async (req, res) => {
             payment_method: id,
             confirm: true
         })
-        console.log(payment);
         res.send({ message: 'Succesfull payment' });
     } catch (error) {
         console.log(error);

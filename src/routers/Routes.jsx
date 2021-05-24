@@ -44,7 +44,7 @@ const Routes = () => {
           <Route exact path="/signup" component={SigUp} />
           <Route exact path="/cart" component={CartPage} />
           <Route exact path="/shop/:id" component={Comprar} />
-          <Route exact path="/payment" component={StripeComponent}/>
+          <Route exact path="/payment/:total" component={StripeComponent}/>
         </Switch>
       </Router>
     </div>

@@ -102,9 +102,9 @@ export const Slider = (props) => {
         let arrTwo = res.slice(0, i);
         let arrTotal = [...arrOne, ...arrTwo];
         setstate(arrTotal)
-        let moveRight = arrOne.map(el => el.id.replace(/[a-z\-]/g, ''))
-        let moveLeft = arrTwo.map(el => el.id.replace(/[a-z\-]/g, '') * -1)
-        setmoveState([...moveRight, ...moveLeft])
+        // let moveRight = arrOne.map(el => el.id.replace(/[a-z\-]/g, ''))
+        // let moveLeft = arrTwo.map(el => el.id.replace(/[a-z\-]/g, '') * -1)
+        // setmoveState([...moveRight, ...moveLeft])
     }
 
     if (control) {

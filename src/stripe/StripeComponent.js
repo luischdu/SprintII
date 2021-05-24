@@ -4,8 +4,18 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import styled from "styled-components";
 import { Ring } from 'react-awesome-spinners'
 import axios from 'axios'
+import { useParams } from "react-router";
+import { useHistory } from 'react-router-dom'
+
 
 const stripePromise = loadStripe("pk_test_51IuQhODxWwRTK4xqKq3dsJrdOgRnstQkNGaHFiyi4X8iLSDh0k0f5eKYHT872LpZpfUrIvqEmpphwr9z96HOSn2p00A9czMr24");
+
+const H1Styled = styled.h1`
+    text-align: start;
+    font-size: 20px;
+    color: gray;
+    margin: 12px 0 ;
+`
 
 export const FormGroup = styled.div`
   text-align: center;
@@ -32,14 +42,10 @@ const Button = styled.button`
   }
 `
 
-const H1Styled = styled.h1`
-    text-align: center;
-    font-size: 30px;
-    color: gray;
-    margin: 12px 0 ;
-`
 
 const CheckoutForm = () => {
+  const {total} = useParams();
+  let history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setloading] = useState(false)
@@ -57,18 +63,20 @@ const CheckoutForm = () => {
         const id = paymentMethod.id;
         const { data } = await axios.post('http://localhost:3001/api/checkout/', {
           id,
-          amount: 10000
+          amount: total
         })
       } catch (error) {
         console.log(error);
       }
-      setloading(false)
+      setloading(false);
+      history.push("/");
     }
   }
   return (
 
     <FormGroup>
       <form onSubmit={handleSubmit}>
+      <H1Styled>Datos de la tarjeta</H1Styled>
         <CardElement />
         <Button disabled={!stripe}>
           {loading ? (
@@ -85,8 +93,8 @@ export default function StripeComponent() {
 
   return (
     <Elements stripe={stripePromise}>
-        <H1Styled>Datos de la tarjeta</H1Styled>
-        <CheckoutForm />
+      
+      <CheckoutForm />
     </Elements>
   )
 }

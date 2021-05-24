@@ -4,6 +4,7 @@
   "description": "App mobile - Guappjolotas",
   "main": "index.js",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
@@ -23,6 +24,7 @@
     "react-dom": "^17.0.2",
     "react-hook-usefetch": "^1.0.4",
     "react-router-dom": "^5.2.0",
+    "regenerator-runtime": "^0.13.7",
     "stripe": "^8.149.0",
     "styled-components": "^5.3.0",
     "sweetalert2": "^11.0.9",
@@ -52,6 +54,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node server/index.js",
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
