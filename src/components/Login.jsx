@@ -21,9 +21,7 @@ const Login = (props) => {
 
   const validar = (event) => {
     event.preventDefault();
-    const usuarios = JSON.parse(localStorage.getItem('users'));
-    let usuario = usuarios.find((e) => e.userMail === email);
-    if (usuario === undefined) {
+    if (localStorage.getItem('users') === null) {
       Swal.fire({
         position: 'center',
         icon: 'error',
@@ -32,25 +30,37 @@ const Login = (props) => {
         timer: 1500,
       });
     } else {
-      if (usuario.userMail === email && usuario.pass === password) {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: `Bienvenido ${usuario.userName}`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        console.log('logeado');
-        history.push('/');
-      } else {
-        console.log('no registrador');
+      const usuarios = JSON.parse(localStorage.getItem('users'));
+      let usuario = usuarios.find((e) => e.userMail === email);
+      if (usuario === undefined) {
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: `Datos incorrectos`,
+          title: `Usuario no registrado`,
           showConfirmButton: false,
           timer: 1500,
         });
+      } else {
+        if (usuario.userMail === email && usuario.pass === password) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `Bienvenido ${usuario.userName}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          console.log('logeado');
+          history.push('/');
+        } else {
+          console.log('no registrador');
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: `Datos incorrectos`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     }
   };

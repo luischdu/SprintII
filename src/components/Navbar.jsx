@@ -8,7 +8,7 @@ const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 6px;
+  margin: 9px;
 `;
 
 const ImgLogoStyle = styled.img`
@@ -19,7 +19,7 @@ const DivEnd = styled.div`
   display: flex;
   justify-content: flex-end;
   align-content: center;
-  gap: 4px;
+  gap: 6px;
 `;
 
 const Navbar = (props) => {
