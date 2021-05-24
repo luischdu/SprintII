@@ -30,12 +30,11 @@ const Navbar = (props) => {
       <HeaderStyle>
         <ImgLogoStyle src="https://i.imgur.com/8aAwol7.png" alt="logo" />{' '}
         <DivEnd>
+          <FontAwesomeIcon icon={faShoppingCart} />
           <FontAwesomeIcon
-            style={{ width: '40px' }}
             onClick={() => history.push('/login')}
             icon={faUser}
           />
-          <FontAwesomeIcon icon={faShoppingCart} />
         </DivEnd>
       </HeaderStyle>
     </>
