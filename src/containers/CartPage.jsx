@@ -4,7 +4,6 @@ import CartHeader from '../components/CartHeader'
 import CartPayButton from '../components/CartPayButton'
 import EachProductCart from '../components/EachProductCart'
 import ModalCart from '../components/ModalCart'
-import StripeCart from '../components/StripeCart'
 import {createGlobalStyle} from "styled-components"
 import color from "../assets/predeterminatedStyles"
 
@@ -68,7 +67,6 @@ function CartPage() {
             <CartHeader/>      
             <EachProductCart setTotal={setTotal} setModal={setModal} products={products} /> 
             <ModalCart setUpdate={setUpdate} setModal={setModal} modal={modal} />
-            {/* <StripeCart/> */}
             <CartPayButton total={total} products={products} />
         </div>
 

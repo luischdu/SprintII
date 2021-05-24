@@ -8,6 +8,7 @@ import SigUp from '../components/SigUp';
 import CartPage from '../containers/CartPage';
 import ListMealsMainPage from '../containers/ListMealsMainPage';
 import Animacion from '../components/Animacion.jsx';
+import StripeComponent from '../stripe/StripeComponent';
 
 const Routes = () => {
   const [loading, setLoading] = useState(true);
@@ -43,6 +44,7 @@ const Routes = () => {
           <Route exact path="/signup" component={SigUp} />
           <Route exact path="/cart" component={CartPage} />
           <Route exact path="/shop/:id" component={Comprar} />
+          <Route exact path="/payment" component={StripeComponent}/>
         </Switch>
       </Router>
     </div>
