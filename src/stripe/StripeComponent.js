@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { Ring } from 'react-awesome-spinners'
 import axios from 'axios'
 import { useParams } from "react-router";
+import { useHistory } from 'react-router-dom'
+
 
 const stripePromise = loadStripe("pk_test_51IuQhODxWwRTK4xqKq3dsJrdOgRnstQkNGaHFiyi4X8iLSDh0k0f5eKYHT872LpZpfUrIvqEmpphwr9z96HOSn2p00A9czMr24");
 
@@ -43,6 +45,7 @@ const Button = styled.button`
 
 const CheckoutForm = () => {
   const {total} = useParams();
+  let history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setloading] = useState(false)
@@ -65,7 +68,8 @@ const CheckoutForm = () => {
       } catch (error) {
         console.log(error);
       }
-      setloading(false)
+      setloading(false);
+      history.push("/");
     }
   }
   return (

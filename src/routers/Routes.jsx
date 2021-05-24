@@ -38,7 +38,6 @@ const Routes = () => {
               <Navbar />
               <Buscador />
               <ListMealsMainPage />
-              <StripeComponent/>
             </Route>
           )}
           <Route exact path="/login" component={Login} />

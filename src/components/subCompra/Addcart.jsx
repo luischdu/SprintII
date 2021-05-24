@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import useFetch from 'react-hook-usefetch'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 
 const Button = styled.button`
     position: fixed;
@@ -27,7 +28,7 @@ const Addcart = (props) => {
    // setvalores(data)
     const [compra, setcompra] = useState(null)
     const [compraCombo, setcompraCombo] = useState(null)
-
+    let history = useHistory();
     const shop = () => {
         let newPrice = Dato.price * props.Total;
         setcompra({
@@ -48,20 +49,21 @@ const Addcart = (props) => {
             if(compraCombo){
                 delete compra.id;
                 delete compraCombo.id;
-                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/`, compra)
+                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, compra)
                 .then(res => {
                     console.log(res)
-                    return axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/`, compraCombo)
+                    return axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, compraCombo)
                 }).then(res => 
                     console.log(res))
                 setstate(false)
                 }else{
                     delete compra.id;
-                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/`, compra)
+                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/cart`, compra)
                 .then(res => {
                     console.log(res)
                 })
             }
+            history.push("/");
         }
     }, [shop])
 
@@ -72,7 +74,7 @@ const Addcart = (props) => {
 
     return (
         <div>
-            <Button onClick={shop}>Agregar {props.Total} al carrito ${Dato.price * props.Total}</Button>
+            <Button onClick={shop}>Agregar {props.Total} al carrito ${ compraCombo != null ? Dato.price * props.Total + props.Combo.price : Dato.price * props.Total}</Button>
         </div>
     )
 
