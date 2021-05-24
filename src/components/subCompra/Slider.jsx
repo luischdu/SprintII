@@ -190,8 +190,6 @@ export const Slider = (props) => {
                     slideshow.current.style.transition = `300ms ease-out all`;
                     slideshow.current.style.transform = `translateX(0)`;
                 }, 30);
-                let item = slideshow.current.children[0].id;
-                props.handleProducto(item);
             } else {
                 const index = props.producto;
 
@@ -241,8 +239,8 @@ export const Slider = (props) => {
     }, []) */
 
     useEffect(() => {
-        props.boolean && document.addEventListener('DOMContentLoaded', Change());
-    }, [props])
+        Change()
+    }, [props.producto])
 
 
 

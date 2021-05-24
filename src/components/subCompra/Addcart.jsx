@@ -48,25 +48,22 @@ const Addcart = (props) => {
             if(compraCombo){
                 delete compra.id;
                 delete compraCombo.id;
-                axios.post(`https://api-guappjalotas.herokuapp.com/cart`, compra)
+                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/`, compra)
                 .then(res => {
                     console.log(res)
-                    return axios.post(`https://api-guappjalotas.herokuapp.com/cart`, compraCombo)
+                    return axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/`, compraCombo)
                 }).then(res => 
                     console.log(res))
                 setstate(false)
                 }else{
                     delete compra.id;
-                axios.post(`https://api-guappjalotas.herokuapp.com/cart`, compra)
+                axios.post(`https://api-fake-sprint-guappjalotas.herokuapp.com/`, compra)
                 .then(res => {
                     console.log(res)
                 })
             }
-            
         }
-        
     }, [shop])
-
 
     useEffect(() => {
         axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${props.categoria}/${props.Producto}`)
@@ -78,6 +75,7 @@ const Addcart = (props) => {
             <Button onClick={shop}>Agregar {props.Total} al carrito ${Dato.price * props.Total}</Button>
         </div>
     )
+
 }
 
 export default Addcart

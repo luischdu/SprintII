@@ -3,6 +3,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faChevronLeft, faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
+
 
 const NavStyle = styled.div`
     display: flex;
@@ -13,10 +15,15 @@ const NavStyle = styled.div`
 `
 
 export const Navbar = () => {
+    let history = useHistory();
+
+    function handleClick() {
+      history.push("/");
+    }
     return (
         <NavStyle>
 
-            <Link to='/'><FontAwesomeIcon icon={faChevronLeft} /></Link> 
+            <FontAwesomeIcon onClick={handleClick} icon={faChevronLeft} />
             <Link to='/cart'><FontAwesomeIcon icon={faShoppingCart} /></Link>
 
         </NavStyle>
