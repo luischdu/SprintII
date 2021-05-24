@@ -28,6 +28,7 @@ const Addcart = (props) => {
    // setvalores(data)
     const [compra, setcompra] = useState(null)
     const [compraCombo, setcompraCombo] = useState(null)
+    const [precioTotal, setprecioTotal] = useState(25)
     let history = useHistory();
     const shop = () => {
         let newPrice = Dato.price * props.Total;
@@ -68,13 +69,17 @@ const Addcart = (props) => {
     }, [shop])
 
     useEffect(() => {
+        props.Combo ? setprecioTotal(Dato.price * props.Total + props.Combo.price): setprecioTotal(Dato.price * props.Total)
+    }, [props])
+
+    useEffect(() => {
         axios.get(`https://api-fake-sprint-guappjalotas.herokuapp.com/${props.categoria}/${props.Producto}`)
             .then(res => setDato(res.data))
     }, [props.Producto])
 
     return (
         <div>
-            <Button onClick={shop}>Agregar {props.Total} al carrito ${ compraCombo != null ? Dato.price * props.Total + props.Combo.price : Dato.price * props.Total}</Button>
+            <Button onClick={shop}>Agregar {props.Total} al carrito ${!precioTotal ? Dato.price : precioTotal }</Button>
         </div>
     )
 
